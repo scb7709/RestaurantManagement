@@ -41,8 +41,8 @@ public class OrderFragment extends Fragment implements  View.OnClickListener{
 
     TextView fragment_order_pendingorder_count;
 
-    List<Order> orderList;
-    List<Order> orderListwait;
+    List<Object> orderList;
+    List<Object> orderListwait;
     OrderAdapter orderAdapter;
     LayoutInflater layoutInflater;
 
@@ -71,7 +71,7 @@ public class OrderFragment extends Fragment implements  View.OnClickListener{
 
                     break;
                 case 1:
-                    order = new Order(i, MyDate.getNowTime() + i, MyDate.getOrderTime(), i, "待结单", GetString.createRandom(false, 8), GetString.createRandom(true, 2));
+                    order = new Order(i, MyDate.getNowTime() + i, MyDate.getOrderTime(), i, "待接单", GetString.createRandom(false, 8), GetString.createRandom(true, 2));
                     orderListwait.add(order);
                     break;
                 case 2:
@@ -118,9 +118,9 @@ public class OrderFragment extends Fragment implements  View.OnClickListener{
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent=new Intent(getActivity(), OrderDetialsActivity.class);
                 if(position==0){
-                    intent.putExtra("order",orderList.get(i));
+                    intent.putExtra("order",(Order)orderList.get(i));
                 }else {
-                    intent.putExtra("order",orderListwait.get(i));
+                    intent.putExtra("order",(Order)orderListwait.get(i));
                 }
                 startActivity(intent);
 

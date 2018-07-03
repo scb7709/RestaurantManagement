@@ -17,15 +17,20 @@ import java.util.List;
 
 
 public class OrderAdapter extends BaseAdapter {
-    List<Order> orderList;
+    List<Object> orderList;
     LayoutInflater layoutInflater;
 
     public OrderAdapter() {
     }
 
-    public OrderAdapter(List<Order> orderList, LayoutInflater layoutInflater) {
+    public OrderAdapter(List<Object> orderList, LayoutInflater layoutInflater) {
         this.orderList = orderList;
         this.layoutInflater = layoutInflater;
+    }
+
+    public List<Object> getList() {
+
+        return orderList;
     }
 
     @Override
@@ -34,7 +39,7 @@ public class OrderAdapter extends BaseAdapter {
     }
 
     @Override
-    public Order getItem(int i) {
+    public Object getItem(int i) {
         return orderList.get(i);
     }
 
@@ -46,26 +51,26 @@ public class OrderAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         OrderViewHolder orderViewHolder;
-        if(view==null){
-            orderViewHolder=new OrderViewHolder();
-            view=layoutInflater.inflate(R.layout.listview_item_order,null);
-            orderViewHolder.listview_item_ordernumber=(TextView)view.findViewById(R.id.listview_item_ordernumber);
-            orderViewHolder.listview_item_ordertime=(TextView)view.findViewById(R.id.listview_item_ordertime);
-            orderViewHolder.listview_item_tablenumber=(TextView)view.findViewById(R.id.listview_item_tablenumber);
+        if (view == null) {
+            orderViewHolder = new OrderViewHolder();
+            view = layoutInflater.inflate(R.layout.listview_item_order, null);
+            orderViewHolder.listview_item_ordernumber = (TextView) view.findViewById(R.id.listview_item_ordernumber);
+            orderViewHolder.listview_item_ordertime = (TextView) view.findViewById(R.id.listview_item_ordertime);
+            orderViewHolder.listview_item_tablenumber = (TextView) view.findViewById(R.id.listview_item_tablenumber);
 
-            orderViewHolder.listview_item_orderstate=(TextView)view.findViewById(R.id.listview_item_orderstate);
+            orderViewHolder.listview_item_orderstate = (TextView) view.findViewById(R.id.listview_item_orderstate);
 
-            orderViewHolder.listview_item_name=(TextView)view.findViewById(R.id.listview_item_name);
-            orderViewHolder.listview_item_money=(TextView)view.findViewById(R.id.listview_item_money);
+            orderViewHolder.listview_item_name = (TextView) view.findViewById(R.id.listview_item_name);
+            orderViewHolder.listview_item_money = (TextView) view.findViewById(R.id.listview_item_money);
             view.setTag(orderViewHolder);
-        }else {
-            orderViewHolder=(OrderViewHolder) view.getTag();
+        } else {
+            orderViewHolder = (OrderViewHolder) view.getTag();
         }
 
-        Order order = getItem(i);
+        Order order = (Order) getItem(i);
         orderViewHolder.listview_item_ordernumber.setText(order.getOrder_id());
         orderViewHolder.listview_item_ordertime.setText(order.getTime());
-        orderViewHolder.listview_item_tablenumber.setText(order.getTableNumber()+"");
+        orderViewHolder.listview_item_tablenumber.setText(order.getTableNumber() + "");
         orderViewHolder.listview_item_orderstate.setText(order.getState());
         orderViewHolder.listview_item_name.setText(order.getName());
         orderViewHolder.listview_item_money.setText(order.getMoney());
@@ -75,7 +80,7 @@ public class OrderAdapter extends BaseAdapter {
 
 
     class OrderViewHolder {
-        TextView listview_item_ordernumber, listview_item_ordertime, listview_item_tablenumber, listview_item_orderstate,listview_item_name, listview_item_money;
+        TextView listview_item_ordernumber, listview_item_ordertime, listview_item_tablenumber, listview_item_orderstate, listview_item_name, listview_item_money;
 
     }
 }
