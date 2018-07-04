@@ -18,18 +18,18 @@ import java.util.List;
 
 
 public class FoodAdapter extends BaseAdapter {
-    List<Food> foodList;
+    List<Object> foodList;
     LayoutInflater layoutInflater;
 
     public FoodAdapter() {
     }
 
-    public FoodAdapter(List<Food> foodList, LayoutInflater layoutInflater) {
+    public FoodAdapter(List<Object> foodList, LayoutInflater layoutInflater) {
         this.foodList = foodList;
         this.layoutInflater = layoutInflater;
     }
 
-    public List<Food> getList() {
+    public List<Object> getList() {
 
         return foodList;
     }
@@ -40,7 +40,7 @@ public class FoodAdapter extends BaseAdapter {
     }
 
     @Override
-    public Food getItem(int i) {
+    public Object getItem(int i) {
         return foodList.get(i);
     }
 
@@ -62,7 +62,7 @@ public class FoodAdapter extends BaseAdapter {
             orderViewHolder = (OrderViewHolder) view.getTag();
         }
 
-        Food food =  getItem(i);
+        Food food = (Food) getItem(i);
         orderViewHolder.listview_item_foodmaterial_food_foodname.setText(food.getFood_name());
         orderViewHolder.listview_item_foodmaterial_food_foodmoney.setText("￥"+food.getFood_money());
 

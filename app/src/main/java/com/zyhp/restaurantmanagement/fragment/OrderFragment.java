@@ -142,14 +142,14 @@ int  position;
                     orderAdapter=new OrderAdapter(orderList, layoutInflater);
                     fragment_order_listview.setAdapter(orderAdapter);
                     fragment_order_allorder_view.setBackgroundResource(R.color.appcolorred);
-                    fragment_order_pendingorder_view.setBackgroundResource(R.color.gray2);
+                    fragment_order_pendingorder_view.setBackgroundResource(R.color.white);
                     // fragment_order_allorder_view.
                 }
                 break;
             case R.id.fragment_order_pendingorder:
                 if (position != 1) {
                     position = 1;
-                    fragment_order_allorder_view.setBackgroundResource(R.color.gray2);
+                    fragment_order_allorder_view.setBackgroundResource(R.color.white);
                     fragment_order_pendingorder_view.setBackgroundResource(R.color.appcolorred);
                     orderAdapter=new OrderAdapter(orderListwait, layoutInflater);
                     fragment_order_listview.setAdapter(orderAdapter);

@@ -15,7 +15,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
+import com.zyhp.restaurantmanagement.adapter.FoodAdapter;
 import com.zyhp.restaurantmanagement.adapter.OrderAdapter;
+import com.zyhp.restaurantmanagement.entity.Food;
 import com.zyhp.restaurantmanagement.entity.Order;
 
 import java.io.Serializable;
@@ -53,7 +55,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     void findView() {
         layoutInflater = LayoutInflater.from(this);
         view_publictitle_title = (TextView) findViewById(R.id.view_publictitle_title);
-        view_publictitle_title.setText("订单详情");
+
         view_publictitle_back = (RelativeLayout) findViewById(R.id.view_publictitle_back);
         view_publictitle_back.setOnClickListener(this);
         activity_search_edittext = (EditText) findViewById(R.id.activity_search_edittext);
@@ -63,7 +65,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         objects = (List<Object>) intent.getSerializableExtra("data");
         switch (flag) {
             case "order":
+                view_publictitle_title.setText("订单搜索");
                 baseAdapter = new OrderAdapter(objects, layoutInflater);
+                break;
+            case "food":
+                view_publictitle_title.setText("菜品搜索");
+                baseAdapter = new FoodAdapter(objects, layoutInflater);
                 break;
         }
         activity_search_listview.setAdapter(baseAdapter);
@@ -117,6 +124,26 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
 
                         break;
 
+                    case "food":
+                        if (contentString.length() > 0) {
+                            for (Object object : objects) {
+                                Food food = (Food) object;
+                                if (food.getFood_name().contains(contentString)) {
+                                    tempobjects.add(food);
+                                }
+                            }
+                            if (tempobjects.size() > 0) {
+                                OrderAdapter orderAdapter = new OrderAdapter(tempobjects, layoutInflater);
+                                activity_search_listview.setAdapter(orderAdapter);
+                            }
+                        } else {
+                            baseAdapter = new OrderAdapter(objects, layoutInflater);
+                            activity_search_listview.setAdapter(baseAdapter);
+                        }
+
+
+                        break;
+
                 }
 
 
@@ -129,11 +156,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         activity_search_listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
                 switch (flag) {
                     case "order":
 
-                        Intent intent = new Intent(SearchActivity.this, OrderDetialsActivity.class);
+                        intent.setClass(SearchActivity.this, OrderDetialsActivity.class);
                         intent.putExtra("order", (Order) ((OrderAdapter) baseAdapter).getList().get(i));
+                        startActivity(intent);
+
+                        break;
+
+                    case "food":
+                        intent.setClass(SearchActivity.this, FoodDetialsActivity.class);
+
+                        intent.putExtra("food", (Food) ((FoodAdapter) baseAdapter).getList().get(i));
                         startActivity(intent);
 
                         break;

@@ -1,8 +1,6 @@
 package com.zyhp.restaurantmanagement.activity;
 
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -15,7 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
-import com.zyhp.restaurantmanagement.fragment.FoodmaterialFragment;
+import com.zyhp.restaurantmanagement.fragment.FoodFragment;
 import com.zyhp.restaurantmanagement.fragment.MyselfFragment;
 import com.zyhp.restaurantmanagement.fragment.OrderFragment;
 import com.zyhp.restaurantmanagement.fragment.VarietyofdishesFragment;
@@ -80,7 +78,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
                     position = 2;
                     activity_headtitle_title.setText("菜品");
                     activity_headtitle_icon.setVisibility(View.VISIBLE);
-                    changeFragment(new FoodmaterialFragment(), "FoodmaterialFragment");
+                    changeFragment(new FoodFragment(), "FoodFragment");
                 }
                 break;
             case R.id.activity_main_my:

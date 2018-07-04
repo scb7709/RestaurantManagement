@@ -32,6 +32,8 @@
         </activity>
         <activity android:name=".activity.OrderDetialsActivity">
         </activity>
+        <activity android:name=".activity.FoodDetialsActivity">
+        </activity>
 
     </application>
 

@@ -20,4 +20,7 @@
 
 
     <color name="black">#000000</color>
+    <color name="blacklow">#363636</color>
+
+
 </resources>

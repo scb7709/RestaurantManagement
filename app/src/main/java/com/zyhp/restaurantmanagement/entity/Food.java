@@ -1,16 +1,21 @@
 package com.zyhp.restaurantmanagement.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/7/3.
  */
 
-public class Food {
+public class Food implements Serializable{
     private String food_id;
     private int food_classifyId;
     private String food_image;
     private String food_name;
     private String food_money;
     private String food_num;
+
+
+
 
     public int getFood_classifyId() {
         return food_classifyId;

@@ -6,11 +6,10 @@
 
 
     <ListView
-        android:id="@+id/fragment_foodmaterial_classify"
+        android:id="@+id/fragment_food_classify"
         android:layout_width="80dp"
         android:layout_height="match_parent"
-        android:background="@color/lowwhite"
-      ></ListView>
+        android:background="@color/lowwhite"></ListView>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -24,20 +23,20 @@
             android:background="@color/white">
 
             <TextView
-                android:id="@+id/fragment_foodmaterial_classifyname"
+                android:id="@+id/fragment_food_classifyname"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
                 android:gravity="center"
-                android:text="炒菜"
+                android:text="主食"
                 android:textColor="@color/black"
                 android:textSize="15dp"
 
                 />
 
             <ImageView
-                android:id="@+id/fragment_foodmaterial_add"
+                android:id="@+id/fragment_food_add"
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_alignParentRight="true"
@@ -51,11 +50,28 @@
             android:layout_height="1dp"
             android:background="@color/gray"></View>
 
-        <ListView
-            android:id="@+id/fragment_foodmaterial_food"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"></ListView>
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/fragment_food_food"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"></ListView>
+
+            <TextView
+                android:id="@+id/fragment_food_nothing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:visibility="gone"
+                android:text="还未添加任何菜品"
+                android:textSize="18dp" />
+
+        </RelativeLayout>
+
     </LinearLayout>
 
 </LinearLayout>
