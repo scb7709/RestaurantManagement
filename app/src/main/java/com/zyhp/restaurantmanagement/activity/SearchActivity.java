@@ -29,7 +29,7 @@ import java.util.List;
  */
 
 public class SearchActivity extends BaseActivity implements View.OnClickListener {
-    private TextView view_publictitle_title;
+    private TextView view_publictitle_title,activity_search_nothing;
 
     private RelativeLayout view_publictitle_back;
     Intent intent;
@@ -55,7 +55,7 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
     void findView() {
         layoutInflater = LayoutInflater.from(this);
         view_publictitle_title = (TextView) findViewById(R.id.view_publictitle_title);
-
+        activity_search_nothing= (TextView) findViewById(R.id.activity_search_nothing);
         view_publictitle_back = (RelativeLayout) findViewById(R.id.view_publictitle_back);
         view_publictitle_back.setOnClickListener(this);
         activity_search_edittext = (EditText) findViewById(R.id.activity_search_edittext);
@@ -65,10 +65,12 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         objects = (List<Object>) intent.getSerializableExtra("data");
         switch (flag) {
             case "order":
-                view_publictitle_title.setText("订单搜索");
+                view_publictitle_title.setText("我的订单");
                 baseAdapter = new OrderAdapter(objects, layoutInflater);
+                activity_search_edittext.setHint("输入关键字搜索(单号、昵称)");
                 break;
             case "food":
+                activity_search_edittext.setHint("输入关键字搜索(菜品名称、价格)");
                 view_publictitle_title.setText("菜品搜索");
                 baseAdapter = new FoodAdapter(objects, layoutInflater);
                 break;
@@ -108,16 +110,21 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                         if (contentString.length() > 0) {
                             for (Object object : objects) {
                                 Order order = (Order) object;
-                                if (order.getOrder_id().startsWith(contentString)
-                                        || order.getName().startsWith(contentString)) {
+                                if (order.getOrder_id().contains(contentString)
+                                        || order.getName().contains(contentString)) {
                                     tempobjects.add(order);
                                 }
                             }
                             if (tempobjects.size() > 0) {
+                                activity_search_nothing.setVisibility(View.GONE);
                                 OrderAdapter orderAdapter = new OrderAdapter(tempobjects, layoutInflater);
                                 activity_search_listview.setAdapter(orderAdapter);
+                            }else {
+                                activity_search_nothing.setVisibility(View.VISIBLE);
+
                             }
                         } else {
+                            activity_search_nothing.setVisibility(View.GONE);
                             baseAdapter = new OrderAdapter(objects, layoutInflater);
                             activity_search_listview.setAdapter(baseAdapter);
                         }
@@ -128,16 +135,20 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
                         if (contentString.length() > 0) {
                             for (Object object : objects) {
                                 Food food = (Food) object;
-                                if (food.getFood_name().contains(contentString)) {
+                                if (food.getFood_name().contains(contentString)||food.getFood_money().contains(contentString)) {
                                     tempobjects.add(food);
                                 }
                             }
                             if (tempobjects.size() > 0) {
-                                OrderAdapter orderAdapter = new OrderAdapter(tempobjects, layoutInflater);
-                                activity_search_listview.setAdapter(orderAdapter);
+                                activity_search_nothing.setVisibility(View.GONE);
+                                FoodAdapter foodAdapter = new FoodAdapter(tempobjects, layoutInflater);
+                                activity_search_listview.setAdapter(foodAdapter);
+                            }else {
+                                activity_search_nothing.setVisibility(View.VISIBLE);
                             }
                         } else {
-                            baseAdapter = new OrderAdapter(objects, layoutInflater);
+                            activity_search_nothing.setVisibility(View.GONE);
+                            baseAdapter = new FoodAdapter(objects, layoutInflater);
                             activity_search_listview.setAdapter(baseAdapter);
                         }
 

@@ -74,6 +74,13 @@ public class OrderAdapter extends BaseAdapter {
         orderViewHolder.listview_item_orderstate.setText(order.getState());
         orderViewHolder.listview_item_name.setText(order.getName());
         orderViewHolder.listview_item_money.setText(order.getMoney());
+        if (order.getState().equals("待接单")) {
+
+            orderViewHolder.listview_item_orderstate.setBackgroundResource(R.drawable.item_order_shape);
+        }else {
+            orderViewHolder.listview_item_orderstate.setBackgroundResource(0);
+        }
+
 
         return view;
     }

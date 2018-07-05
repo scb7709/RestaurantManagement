@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.fragment.FoodFragment;
+import com.zyhp.restaurantmanagement.fragment.IncomeFragment;
 import com.zyhp.restaurantmanagement.fragment.MyselfFragment;
 import com.zyhp.restaurantmanagement.fragment.OrderFragment;
 import com.zyhp.restaurantmanagement.fragment.VarietyofdishesFragment;
@@ -59,26 +60,25 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             case R.id.activity_main_order:
                 if (position != 0) {
                     position = 0;
-                    activity_headtitle_title.setText("订单");
+                    activity_headtitle_title.setText("今日订单");
                     activity_headtitle_icon.setVisibility(View.VISIBLE);
                     changeFragment(new OrderFragment(), "OrderFragment");
                 }
                 break;
-            case R.id.activity_main_varietyofdishes:
+            case R.id.activity_main_food:
                 if (position != 1) {
                     position = 1;
-                    activity_headtitle_title.setText("食材");
-                    activity_headtitle_icon.setVisibility(View.VISIBLE);
-
-                    changeFragment(new VarietyofdishesFragment(), "VarietyofdishesFragment");
-                }
-                break;
-            case R.id.activity_main_foodmaterial:
-                if (position != 2) {
-                    position = 2;
                     activity_headtitle_title.setText("菜品");
                     activity_headtitle_icon.setVisibility(View.VISIBLE);
                     changeFragment(new FoodFragment(), "FoodFragment");
+                }
+                break;
+            case R.id.activity_main_income:
+                if (position != 2) {
+                    position = 2;
+                    activity_headtitle_title.setText("营收");
+                    activity_headtitle_icon.setVisibility(View.INVISIBLE);
+                    changeFragment(new IncomeFragment(), "IncomeFragment");
                 }
                 break;
             case R.id.activity_main_my:

@@ -36,7 +36,7 @@ boolean flag;
             ViewGroup contentView = (ViewGroup) findViewById(android.R.id.content);
             View statusBarView = new View(this);
             ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, getStatusBarHeight(this));
-            statusBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.statusbar) );
+            statusBarView.setBackgroundColor(ContextCompat.getColor(this, R.color.redlow) );
             contentView.getChildAt(0).setFitsSystemWindows(true);
             contentView.addView(statusBarView, lp);
         }

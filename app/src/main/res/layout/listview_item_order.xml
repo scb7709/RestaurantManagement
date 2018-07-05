@@ -97,9 +97,11 @@
 
 
             <TextView
+                android:background="@drawable/item_order_shape"
                 android:id="@+id/listview_item_orderstate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="30dp"
+                android:gravity="center"
                 android:layout_marginLeft="10dp"
                 android:text="待结单"
                 android:textColor="@color/black"

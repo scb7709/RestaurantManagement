@@ -57,7 +57,7 @@
             android:id="@+id/dialog_addfood_foodname"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
+
             android:background="@drawable/addfood_shape"
             android:gravity="center"
             android:textColor="#333333"
@@ -68,7 +68,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
            android:gravity="center"
-            android:layout_marginLeft="15dp"
+
             android:background="@drawable/addfood_shape"
             android:hint="请输入价格"
             android:textColor="#333333"

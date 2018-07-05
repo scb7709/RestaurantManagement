@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.adapter.OrderFoodAdapter;
@@ -25,7 +24,7 @@ import java.util.List;
  * Created by Administrator on 2018/7/2.
  */
 
-public class OrderDetialsActivity extends BaseActivity implements View.OnClickListener {
+public class OrderListActivity extends BaseActivity implements View.OnClickListener {
 
     private TextView view_publictitle_title;
 
@@ -79,7 +78,7 @@ public class OrderDetialsActivity extends BaseActivity implements View.OnClickLi
                 public void onClick(View view) {
                     listview_item_orderstate.setText("已接单");
                     listview_item_orderstate.setTextColor(getResources().getColor(R.color.black));
-                    MyShow.myToash(OrderDetialsActivity.this,"已接单");
+                    MyShow.myToash(OrderListActivity.this,"已接单");
                 }
             });
         }else {
@@ -101,7 +100,7 @@ public class OrderDetialsActivity extends BaseActivity implements View.OnClickLi
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
                 Intent intent = new Intent();
-                intent.setClass(OrderDetialsActivity.this, FoodDetialsActivity.class);
+                intent.setClass(OrderListActivity.this, FoodDetialsActivity.class);
 
                 intent.putExtra("food", foodList.get(i));
                 startActivity(intent);
