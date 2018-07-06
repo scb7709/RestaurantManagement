@@ -82,11 +82,22 @@ public class FoodFragment extends Fragment {
         spinnerlist.add("火锅");
         spinnerlist.add("烤鱼");
 
+        spinnerlist.add("特色");
+        spinnerlist.add("热销");
+        spinnerlist.add("优惠");
+        spinnerlist.add("饮品");
+
+
+
         classifylist.add(new FoodClassify(0, "主食"));
         classifylist.add(new FoodClassify(1, "炒菜"));
         classifylist.add(new FoodClassify(2, "汤菜"));
         classifylist.add(new FoodClassify(3, "火锅"));
         classifylist.add(new FoodClassify(4, "烤鱼"));
+        classifylist.add(new FoodClassify(5, "特色"));
+        classifylist.add(new FoodClassify(6, "热销"));
+        classifylist.add(new FoodClassify(7, "优惠"));
+        classifylist.add(new FoodClassify(8, "饮品"));
 
         foodList = GetOrderList.getOrderList();
 
@@ -122,9 +133,16 @@ public class FoodFragment extends Fragment {
 
 
         tempfoodlist.add(new Food(0, "米饭", "5"));
+        tempfoodlist.add(new Food(0, "馒头", "5"));
+        tempfoodlist.add(new Food(0, "包子", "5"));
         tempfoodlist.add(new Food(0, "面条", "6"));
         tempfoodlist.add(new Food(0, "拉面", "7"));
         tempfoodlist.add(new Food(0, "刀削面", "10"));
+        tempfoodlist.add(new Food(0, "意大利面", "10"));
+        tempfoodlist.add(new Food(0, "西班牙打卤面", "10"));
+        tempfoodlist.add(new Food(0, "炸酱面", "10"));
+
+
         foodAdapter = new FoodAdapter(tempfoodlist, layoutInflater);
         fragment_food_food.setAdapter(foodAdapter);
 

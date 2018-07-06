@@ -1,4 +1,4 @@
-package com.zyhp.restaurantmanagement.linechart;
+package com.zyhp.restaurantmanagement.myview;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -395,8 +395,11 @@ public class ChartView extends View {
 
         this.getParent().requestDisallowInterceptTouchEvent(true);//当该view获得点击事件，就请求父控件不拦截事件
         obtainVelocityTracker(event);
+        Boolean x1 = getaBoolean(event);
+        if (x1 != null) return x1;
 
-        String action = "";
+        return  true;
+        /*String action = "";
         //在触发时回去到起始坐标
         float x= event.getX();
         float y = event.getY();
@@ -444,7 +447,7 @@ public class ChartView extends View {
 
 
 
-        return true;
+        return true;*/
     }
 
     @Nullable

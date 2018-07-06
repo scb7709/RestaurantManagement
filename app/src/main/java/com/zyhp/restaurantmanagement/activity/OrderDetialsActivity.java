@@ -78,6 +78,7 @@ public class OrderDetialsActivity extends BaseActivity implements View.OnClickLi
                 @Override
                 public void onClick(View view) {
                     listview_item_orderstate.setText("已接单");
+                    listview_item_orderstate.setBackgroundResource(0);
                     listview_item_orderstate.setTextColor(getResources().getColor(R.color.black));
                     MyShow.myToash(OrderDetialsActivity.this,"已接单");
                 }

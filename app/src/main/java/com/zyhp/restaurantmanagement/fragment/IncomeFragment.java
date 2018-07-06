@@ -2,11 +2,9 @@ package com.zyhp.restaurantmanagement.fragment;
 
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +16,8 @@ import com.zyhp.restaurantmanagement.activity.SearchActivity;
 import com.zyhp.restaurantmanagement.datepickerview.TimePickerView;
 import com.zyhp.restaurantmanagement.entity.Income;
 import com.zyhp.restaurantmanagement.entity.Order;
-import com.zyhp.restaurantmanagement.linechart.ChartView;
+import com.zyhp.restaurantmanagement.myview.ChartView;
 
-import com.zyhp.restaurantmanagement.utils.GetOrderList;
 import com.zyhp.restaurantmanagement.utils.GetString;
 import com.zyhp.restaurantmanagement.utils.MyDate;
 

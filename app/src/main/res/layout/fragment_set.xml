@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/lowwhite"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/fragment_set_accountset"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/white"
+
+        android:orientation="horizontal">
+
+        <com.zyhp.restaurantmanagement.myview.CircleImageView
+            android:id="@+id/fragment_set_headimage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/reba" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:text="留一手烤鱼"
+                android:textColor="@color/blacklow"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="10dp"
+
+                android:text="账户：dgf1258"
+                android:textColor="@color/gray2"
+                android:textSize="13dp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/fragment_set_storeset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="店铺设置"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_set_tableset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="桌位管理"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_set_staffset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="员工管理"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/fragment_set_foodmaterialset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="食材管理"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/fragment_set_activityset"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="优惠活动"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/fragment_set_aboutus"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="关于我们"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+</LinearLayout>

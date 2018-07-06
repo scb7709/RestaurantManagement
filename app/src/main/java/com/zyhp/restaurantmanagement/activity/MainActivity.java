@@ -1,6 +1,7 @@
 package com.zyhp.restaurantmanagement.activity;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -15,11 +16,13 @@ import android.widget.TextView;
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.fragment.FoodFragment;
 import com.zyhp.restaurantmanagement.fragment.IncomeFragment;
-import com.zyhp.restaurantmanagement.fragment.MyselfFragment;
-import com.zyhp.restaurantmanagement.fragment.OrderFragment;
-import com.zyhp.restaurantmanagement.fragment.VarietyofdishesFragment;
 
-public class MainActivity extends FragmentActivity implements RadioGroup.OnCheckedChangeListener{
+import com.zyhp.restaurantmanagement.fragment.OrderFragment;
+import com.zyhp.restaurantmanagement.fragment.SetFragment;
+
+
+public class MainActivity extends BaseActivity implements RadioGroup.OnCheckedChangeListener{
+    public  static  Activity  activity;
     private FragmentManager fragmentManager;
 
     RadioGroup activity_main_tabs;
@@ -31,6 +34,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        activity=this;
         activity_main_tabs=(RadioGroup) findViewById(R.id.activity_main_tabs);
         activity_headtitle_icon=(RelativeLayout) findViewById(R.id.activity_headtitle_icon);
         activity_headtitle_title=(TextView)findViewById(R.id.activity_headtitle_title);
@@ -68,7 +72,7 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             case R.id.activity_main_food:
                 if (position != 1) {
                     position = 1;
-                    activity_headtitle_title.setText("菜品");
+                    activity_headtitle_title.setText("菜品管理");
                     activity_headtitle_icon.setVisibility(View.VISIBLE);
                     changeFragment(new FoodFragment(), "FoodFragment");
                 }
@@ -76,17 +80,17 @@ public class MainActivity extends FragmentActivity implements RadioGroup.OnCheck
             case R.id.activity_main_income:
                 if (position != 2) {
                     position = 2;
-                    activity_headtitle_title.setText("营收");
+                    activity_headtitle_title.setText("营业情况");
                     activity_headtitle_icon.setVisibility(View.INVISIBLE);
                     changeFragment(new IncomeFragment(), "IncomeFragment");
                 }
                 break;
-            case R.id.activity_main_my:
+            case R.id.activity_main_set:
                 if (position != 3) {
                     position = 3;
-                    activity_headtitle_title.setText("我");
+                    activity_headtitle_title.setText("设置");
                     activity_headtitle_icon.setVisibility(View.INVISIBLE);
-                    changeFragment(new MyselfFragment(), "MyselfFragment");
+                    changeFragment(new SetFragment(), "SetFragment");
                 }
                 break;
         }

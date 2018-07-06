@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:focusableInTouchMode="true"
+    android:layout_height="match_parent"
+    android:background="@color/lowwhite"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/view_publicctitle"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"></include>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@mipmap/accontset_blackground"
+        android:layout_height="150dp">
+
+
+        <com.zyhp.restaurantmanagement.myview.CircleImageView
+            android:id="@+id/activity_accountset_headimage"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+           android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:src="@mipmap/reba" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="账   号:"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="dgf1258"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/activity_accountset_phonenumber_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="手机号:"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+        <TextView
+            android:id="@+id/activity_accountset_phonenumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="18611347382"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/activity_accountset_emali_layout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+
+
+        android:layout_marginTop="5dp"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15dp"
+            android:text="邮   箱:"
+            android:textColor="@color/blacklow"
+            android:textSize="14dp" />
+
+        <TextView
+            android:id="@+id/activity_accountset_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="20dp"
+            android:text="77096781@163.com"
+            android:textColor="@color/black"
+            android:textSize="14dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"></View>
+
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/icon_right_arrow" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"></View>
+
+    <Button
+        android:id="@+id/activity_accountset_exitlogin"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/login_selector"
+        android:text="退出登录"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+</LinearLayout>

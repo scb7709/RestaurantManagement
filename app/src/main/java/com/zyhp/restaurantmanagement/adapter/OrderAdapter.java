@@ -70,14 +70,38 @@ public class OrderAdapter extends BaseAdapter {
         Order order = (Order) getItem(i);
         orderViewHolder.listview_item_ordernumber.setText(order.getOrder_id());
         orderViewHolder.listview_item_ordertime.setText(order.getTime());
-        orderViewHolder.listview_item_tablenumber.setText(order.getTableNumber() + "");
+        int tableNum = (int) (Math.random() * 7);
+        String tableNumString = "";
+        switch (tableNum) {
+            case 0:
+
+            case 1:
+
+            case 2:
+                tableNumString = order.getTableNumber() + "";
+                break;
+            case 3:
+                tableNumString = "口碑外卖订单";
+
+                break;
+            case 4:
+                tableNumString = "美团外卖订单";
+                break;
+            case 5:
+                tableNumString = "百度外卖订单";
+                break;
+            case 6:
+                tableNumString = "饿了吗外卖订单";
+                break;
+        }
+        orderViewHolder.listview_item_tablenumber.setText(tableNumString);
         orderViewHolder.listview_item_orderstate.setText(order.getState());
         orderViewHolder.listview_item_name.setText(order.getName());
         orderViewHolder.listview_item_money.setText(order.getMoney());
         if (order.getState().equals("待接单")) {
 
             orderViewHolder.listview_item_orderstate.setBackgroundResource(R.drawable.item_order_shape);
-        }else {
+        } else {
             orderViewHolder.listview_item_orderstate.setBackgroundResource(0);
         }
 

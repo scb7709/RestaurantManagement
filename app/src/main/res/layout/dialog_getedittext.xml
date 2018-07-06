@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/doubleline_shape"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_getedittext_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"
+        android:text="昵称"
+        android:textColor="@color/black"
+        android:textSize="17dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="30dp"
+
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/dialog_getedittext_edittext1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+
+            android:background="@drawable/addfood_shape"
+            android:gravity="center"
+            android:textColor="#333333"
+            android:textSize="15dp" />
+        <EditText
+            android:visibility="gone"
+            android:layout_marginTop="5dp"
+            android:id="@+id/dialog_getedittext_edittext2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+           android:gravity="center"
+
+            android:background="@drawable/addfood_shape"
+            android:hint="请输入价格"
+            android:textColor="#333333"
+            android:textSize="15dp" />
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ></View>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/dialog_getedittext_cancle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_weight="1"
+            android:background="@drawable/doubleline_shape"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#c7c7c7"
+            android:textSize="15dp"
+
+            />
+
+        <Button
+            android:id="@+id/dialog_getedittext_ok"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/doubleline_shape_ok"
+            android:gravity="center"
+            android:text="确定"
+
+            android:textSize="15dp" />
+    </LinearLayout>
+</LinearLayout>

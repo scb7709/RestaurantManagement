@@ -44,29 +44,39 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"></FrameLayout>
-
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="@color/lowwhite"
+    ></View>
     <RadioGroup
         android:id="@+id/activity_main_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="#F5F5F5"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:padding="10dp">
 
         <RadioButton
+
+
+
+
             android:id="@+id/activity_main_order"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="5dp"
             android:drawableTop="@drawable/maintab_order_bg_seletor"
-
             android:gravity="center_horizontal"
             android:text="订单"
             android:textColor="@drawable/maintab_text_color_selector"
-            android:textSize="12dp" />
+            android:textSize="12dp"
+
+
+            />
 
         <RadioButton
             android:id="@+id/activity_main_food"
@@ -75,7 +85,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="5dp"
-            android:drawableTop="@drawable/maintab_verietyofdishes_bg_seletor"
+            android:drawableTop="@drawable/maintab_food_bg_seletor"
             android:gravity="center_horizontal"
             android:text="菜品"
             android:textColor="@drawable/maintab_text_color_selector"
@@ -88,22 +98,22 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="5dp"
-            android:drawableTop="@drawable/maintab_foodmateial_bg_seletor"
+            android:drawableTop="@drawable/maintab_income_bg_seletor"
             android:gravity="center_horizontal"
             android:text="营收"
             android:textColor="@drawable/maintab_text_color_selector"
             android:textSize="12dp" />
 
         <RadioButton
-            android:id="@+id/activity_main_my"
+            android:id="@+id/activity_main_set"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="5dp"
-            android:drawableTop="@drawable/maintab_my_bg_seletor"
+            android:drawableTop="@drawable/maintab_set_bg_seletor"
             android:gravity="center_horizontal"
-            android:text="我"
+            android:text="设置"
 
             android:textColor="@drawable/maintab_text_color_selector"
             android:textSize="12dp" />
