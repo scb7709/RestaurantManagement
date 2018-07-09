@@ -25,30 +25,27 @@ import com.zyhp.restaurantmanagement.utils.ShareUitls;
  * Created by Administrator on 2018/6/22.
  */
 
-public class SetFragment  extends android.support.v4.app.Fragment implements View.OnClickListener{
+public class SetFragment extends android.support.v4.app.Fragment implements View.OnClickListener {
 
     Activity activity;
-    String  head_url;
+    String head_url;
     CircleImageView fragment_set_headimage;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=inflater.inflate(R.layout.fragment_set,container,false);
+        View view = inflater.inflate(R.layout.fragment_set, container, false);
 
 
         return view;
     }
 
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activity=getActivity();
-        head_url= ShareUitls.getString(activity,"head_url","");
+        activity = getActivity();
         fragment_set_headimage = (CircleImageView) view.findViewById(R.id.fragment_set_headimage);
-        head_url=ShareUitls.getString(activity,"head_url","");
-        if(head_url!=null&&head_url.length()>0){
-            fragment_set_headimage.setImageBitmap(DiskBitmap.getDiskBitmap(head_url,activity));
-        }
         view.findViewById(R.id.fragment_set_accountset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_storeset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_tableset).setOnClickListener(this);
@@ -58,29 +55,37 @@ public class SetFragment  extends android.support.v4.app.Fragment implements Vie
         view.findViewById(R.id.fragment_set_aboutus).setOnClickListener(this);
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
+        head_url = ShareUitls.getString(activity, "head_url", "");
+        if (head_url != null && head_url.length() > 0) {
+            fragment_set_headimage.setImageBitmap(DiskBitmap.getDiskBitmap(head_url, activity));
+        }
+    }
 
-    public void onClick(View v){
-        Intent intent=new Intent();
-        switch (v.getId()){
-            case  R.id.fragment_set_accountset:
+    public void onClick(View v) {
+        Intent intent = new Intent();
+        switch (v.getId()) {
+            case R.id.fragment_set_accountset:
                 intent.setClass(activity, AccountSetActivity.class);
                 break;
-            case  R.id.fragment_set_storeset:
+            case R.id.fragment_set_storeset:
                 intent.setClass(activity, StoreSetActivity.class);
                 break;
-            case  R.id.fragment_set_tableset:
+            case R.id.fragment_set_tableset:
                 intent.setClass(activity, TableSetActivity.class);
                 break;
-            case  R.id.fragment_set_staffset:
+            case R.id.fragment_set_staffset:
                 intent.setClass(activity, StaffSetActivity.class);
                 break;
-            case  R.id.fragment_set_foodmaterialset:
+            case R.id.fragment_set_foodmaterialset:
                 intent.setClass(activity, FoodmatearialSetActivity.class);
                 break;
-            case  R.id.fragment_set_activityset:
+            case R.id.fragment_set_activityset:
                 intent.setClass(activity, ActivitySetActivity.class);
                 break;
-            case  R.id.fragment_set_aboutus:
+            case R.id.fragment_set_aboutus:
                 intent.setClass(activity, AboutUsSetActivity.class);
                 break;
 

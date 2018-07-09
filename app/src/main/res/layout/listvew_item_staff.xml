@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/gray"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:text="技术部"
+        />
+
+<LinearLayout
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:orientation="horizontal"
+    android:layout_height="50dp">
+
+    <com.zyhp.restaurantmanagement.myview.CircleImageView
+        android:id="@+id/activity_storeset_logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="10dp"
+        android:src="@mipmap/reba" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:background="@color/gray"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/blacklow"
+        android:textSize="20dp"
+        android:text="马云"
+        />
+</LinearLayout>
+
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginTop="5dp"
+    android:background="@color/gray"
+    android:layout_marginLeft="70dp"
+    ></View>
+
+
+
+</LinearLayout>

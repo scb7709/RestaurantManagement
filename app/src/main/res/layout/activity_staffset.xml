@@ -10,169 +10,21 @@
         layout="@layout/view_publicctitle"
         android:layout_width="match_parent"
         android:layout_height="50dp"></include>
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <LinearLayout
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/activity_fooddetials_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"
-            android:gravity="center"
-            android:text="宫保鸡丁"
-            android:textColor="@color/black"
-            android:textSize="30dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-
-                android:gravity="center"
-                android:text="价格"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_fooddetials_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-
-                android:gravity="center"
-                android:text="今日销量"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_fooddetials_todaySalesvolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-
-                android:gravity="center"
-                android:text="总销量"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_fooddetials_totalSalesvolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="5dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-
-                android:gravity="center"
-                android:text="销量排名"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-
-            <TextView
-                android:id="@+id/activity_fooddetials_salesvolumeRanking"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/blacklow"
-                android:textSize="15dp" />
-        </RelativeLayout>
-
-        <ImageView
-            android:id="@+id/activity_fooddetials_foodimage"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:src="@drawable/food" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="15dp"
-            android:gravity="center"
-            android:text="主要食材"
-            android:textColor="@color/blacklow"
-            android:textSize="15dp" />
-
+        android:background="@color/lowwhite">
 
         <ListView
-            android:id="@+id/activity_fooddetials_foodmaterial"
+            android:id="@+id/activity_staffset_listview"
             android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="6dp"
+            android:layout_marginRight="6dp"
             android:layout_marginTop="10dp"
-            android:background="@color/lowwhite" />
-    </LinearLayout>
-</ScrollView>
+            ></ListView>
+    </RelativeLayout>
+
 </LinearLayout>

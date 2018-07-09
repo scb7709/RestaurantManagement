@@ -39,19 +39,20 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_alignParentRight="true"
-            android:id="@+id/view_publictitle_icon"
+            android:id="@+id/view_publictitle_right"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:visibility="gone"
             android:layout_centerVertical="true"
             android:layout_marginRight="2dp">
             <Button
+                android:id="@+id/view_publictitle_righticon"
                 android:layout_width="22dp"
                 android:layout_height="22dp"
                 android:clickable="false"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:background="@mipmap/ic_action_discard" />
+                />
         </RelativeLayout>
 
     </RelativeLayout>

@@ -20,7 +20,7 @@ public class ShareUitls {
     }
 
     public static String getString(Context c, String key, String d) {
-        SharedPreferences sp = c.getSharedPreferences("token.xml", Context.MODE_PRIVATE);
+        SharedPreferences sp = c.getSharedPreferences("string.xml", Context.MODE_PRIVATE);
         return sp.getString(key, d);
     }
 
