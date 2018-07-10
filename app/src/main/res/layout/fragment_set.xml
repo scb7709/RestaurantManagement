@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
 
-                android:text="留一手烤鱼"
+                android:text="厚溥餐饮"
                 android:textColor="@color/blacklow"
                 android:textSize="15dp" />
 
@@ -166,7 +166,7 @@
         android:id="@+id/fragment_set_foodmaterialset"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-
+android:visibility="gone"
 
         android:layout_marginTop="5dp"
         android:background="@color/white"

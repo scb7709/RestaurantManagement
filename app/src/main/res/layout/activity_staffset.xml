@@ -11,11 +11,61 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"></include>
 
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/gray">
+
+        <LinearLayout
+            android:id="@+id/noFouces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toLeftOf="@+id/location"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/activity_staffset_serachedittext"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/search_shape"
+                android:gravity="center"
+                android:hint="输入关键字搜索(姓名,部门)"
+                android:singleLine="true"
+                android:textSize="13sp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/location"
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/search_icon" />
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/lowwhite">
 
+        <TextView
+            android:id="@+id/activity_staffset_nothing"
+            android:layout_width="wrap_content"
+            android:text="未搜索到任何信息"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_height="wrap_content" />
         <ListView
             android:id="@+id/activity_staffset_listview"
             android:layout_width="match_parent"
@@ -24,6 +74,8 @@
             android:layout_marginLeft="6dp"
             android:layout_marginRight="6dp"
             android:layout_marginTop="10dp"
+            android:dividerHeight="0dp"
+            android:divider="@color/black"
             ></ListView>
     </RelativeLayout>
 

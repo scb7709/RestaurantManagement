@@ -1,10 +1,12 @@
 package com.zyhp.restaurantmanagement.entity;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2018/7/9.
  */
 
-public class Staff {
+public class Staff implements Serializable{
    private int  id;
     private  String name;//姓名
     private  int age;//年龄
@@ -16,6 +18,46 @@ public class Staff {
     private String  department;//部门
     private String position;//职位
     private   String hiredate;//入职时间
+
+
+    public Staff(String worknumber ,String name, int age, String phone, String email, String address, String department, String position) {
+        this.worknumber = worknumber;
+        this.name = name;
+        this.age = age;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.department = department;
+        this.position = position;
+    }
+    @Override
+
+    public boolean equals(Object obj) {
+
+        if(obj==null){
+
+            return false;
+
+        }
+
+        if(this==obj){
+
+            return true;
+
+        }
+
+        if(obj instanceof Staff){
+
+            Staff staff=(Staff)obj;
+
+            return staff.worknumber.equals(this.worknumber);
+
+        }
+
+        return false;
+
+    }
+
 
     public int getId() {
         return id;

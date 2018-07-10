@@ -13,14 +13,16 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-
+        android:background="@color/white"
         android:layout_height="match_parent">
 
         <GridView
             android:id="@+id/activity_tableset_gridlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/white"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="15dp"
             android:numColumns="3"></GridView>
 

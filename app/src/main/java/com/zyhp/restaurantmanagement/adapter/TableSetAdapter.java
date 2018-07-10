@@ -62,8 +62,14 @@ public class TableSetAdapter extends BaseAdapter {
         }
 
         String table = getItem(i);
+        int radom = (int) (Math.random() * 3);
+        if (radom == 1) {
+            orderViewHolder.gridview_item_bigtext.setBackgroundResource(R.drawable.tablenumber_red_shape);
+        } else {
+            orderViewHolder.gridview_item_bigtext.setBackgroundResource(R.drawable.tablenumber_gray_shape);
+        }
         orderViewHolder.gridview_item_bigtext.setText(table);
-        orderViewHolder.gridview_item_smalltext.setText(table+"号桌");
+        orderViewHolder.gridview_item_smalltext.setText(table + "号桌");
 
 
         return view;

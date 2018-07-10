@@ -1,13 +1,17 @@
 package com.zyhp.restaurantmanagement.fragment;
 
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CalendarView;
+import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -46,7 +50,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     List<Income> incomeList;
 
 
-
+    CalendarView fragment_income_CalendarView;
 
     @Nullable
     @Override
@@ -67,6 +71,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         fragment_income_foodcount = (TextView) view.findViewById(R.id.fragment_income_foodcount);
         fragment_income_ordercount = (TextView) view.findViewById(R.id.fragment_income_ordercount);
         fragment_income_date = (TextView) view.findViewById(R.id.fragment_income_date);
+        fragment_income_CalendarView= (CalendarView) view.findViewById(R.id.fragment_income_CalendarView);
         fragment_income_date.setOnClickListener(this);
         fragment_income_orderlayout = (LinearLayout) view.findViewById(R.id.fragment_income_orderlayout);
         fragment_income_orderlayout.setOnClickListener(this);
@@ -114,13 +119,13 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
             xValue_day.add(i+ "号");
             value_day.put(i + "号", new Random().nextInt(9000)+1000);//60--240
         }
-        for (int i = 1; i <=5; i++) {
-            yValue_day.add(i * 2000);
+        for (int i = 1; i <=10; i++) {
+            yValue_day.add(i * 1000);
         }
         fragment_income_chartview_day.setValue(value_day, xValue_day, yValue_day);
 
 
-        //x轴坐标对应的数据
+       /* //x轴坐标对应的数据
          List<String> xValue_month = new ArrayList<>();
         //y轴坐标对应的数据
          List<Integer> yValue_month = new ArrayList<>();
@@ -133,7 +138,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         for (int i = 1; i <=5; i++) {
             yValue_month.add(i * 20000);
         }
-        fragment_income_chartview_month.setValue(value_month, xValue_month, yValue_month);
+        fragment_income_chartview_month.setValue(value_month, xValue_month, yValue_month);*/
     }
 
 
@@ -141,7 +146,22 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fragment_income_date:
-                pvTime = new TimePickerView(getActivity(), TimePickerView.Type.YEAR_MONTH_DAY);
+                fragment_income_CalendarView.setVisibility(View.VISIBLE);
+                fragment_income_CalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+                    @Override
+                    public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int monthOfYear, int dayOfMonth) {
+                        // 获取一个日历对象，并初始化为当前选中的时间
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        Income income = new Income(dateFormat.format(calendar.getTime()), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
+                        setIncomeData(income);
+                        fragment_income_CalendarView.setVisibility(View.GONE);
+                    }
+                });
+
+
+
+              /*  pvTime = new TimePickerView(getActivity(), TimePickerView.Type.YEAR_MONTH_DAY);
                 pvTime.setTime(new Date());
                 pvTime.setCyclic(false);
                 pvTime.setCancelable(true);
@@ -155,7 +175,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
 
                     }
                 });
-                pvTime.show();
+                pvTime.show();*/
 
                 break;
             case R.id.fragment_income_orderlayout:
