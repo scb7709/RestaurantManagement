@@ -1,6 +1,7 @@
 package com.zyhp.restaurantmanagement.fragment;
 
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -27,6 +28,7 @@ import com.zyhp.restaurantmanagement.utils.MyDate;
 
 import java.io.Serializable;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -44,14 +46,8 @@ import java.util.Random;
 public class IncomeFragment extends Fragment implements View.OnClickListener {
     TextView fragment_income_turnovers, fragment_income_foodcount, fragment_income_ordercount, fragment_income_date;
     LinearLayout fragment_income_orderlayout;
-    private TimePickerView pvTime;
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
     private ChartView fragment_income_chartview_day,fragment_income_chartview_month;
-    List<Income> incomeList;
-
-
-    CalendarView fragment_income_CalendarView;
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -63,6 +59,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         findView(view);
     }
 
@@ -71,7 +68,6 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         fragment_income_foodcount = (TextView) view.findViewById(R.id.fragment_income_foodcount);
         fragment_income_ordercount = (TextView) view.findViewById(R.id.fragment_income_ordercount);
         fragment_income_date = (TextView) view.findViewById(R.id.fragment_income_date);
-        fragment_income_CalendarView= (CalendarView) view.findViewById(R.id.fragment_income_CalendarView);
         fragment_income_date.setOnClickListener(this);
         fragment_income_orderlayout = (LinearLayout) view.findViewById(R.id.fragment_income_orderlayout);
         fragment_income_orderlayout.setOnClickListener(this);
@@ -146,37 +142,36 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fragment_income_date:
-                fragment_income_CalendarView.setVisibility(View.VISIBLE);
-                fragment_income_CalendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-                    @Override
-                    public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int monthOfYear, int dayOfMonth) {
-                        // 获取一个日历对象，并初始化为当前选中的时间
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.set(year, monthOfYear, dayOfMonth);
-                        Income income = new Income(dateFormat.format(calendar.getTime()), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
-                        setIncomeData(income);
-                        fragment_income_CalendarView.setVisibility(View.GONE);
-                    }
-                });
+                //int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
+                //int style=DatePickerDialog.BUTTON_NEGATIVE;
+                 int style= AlertDialog.THEME_HOLO_LIGHT;
+              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
+              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
+              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
 
 
+                DatePickerDialog datePickerDialog=    new DatePickerDialog(getActivity(),style,
+                        new DatePickerDialog.OnDateSetListener() {
+                            @Override
+                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                                Calendar calendar = Calendar.getInstance();
+                                calendar.set(year, monthOfYear, dayOfMonth);
+                                Income income = new Income(dateFormat.format(calendar.getTime()), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
+                                setIncomeData(income);
+                            }
+                        },
+                        2018, 6, 11);
 
-              /*  pvTime = new TimePickerView(getActivity(), TimePickerView.Type.YEAR_MONTH_DAY);
-                pvTime.setTime(new Date());
-                pvTime.setCyclic(false);
-                pvTime.setCancelable(true);
-                pvTime.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
-                    @Override
-                    public void onTimeSelect(Date date) {
-
-                        Income income = new Income(dateFormat.format(date), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
-                        setIncomeData(income);
-
-
-                    }
-                });
-                pvTime.show();*/
-
+                DatePicker datePicker = datePickerDialog.getDatePicker();
+                datePickerDialog.setTitle("选择查询日期");
+                try {
+                    //设置最小日期
+                    datePicker.setMinDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2000-01-01 00:00:00").getTime());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                } //设置最大日期
+                datePicker.setMaxDate(System.currentTimeMillis());
+                datePickerDialog.show();
                 break;
             case R.id.fragment_income_orderlayout:
                 List orderList= new ArrayList<>();

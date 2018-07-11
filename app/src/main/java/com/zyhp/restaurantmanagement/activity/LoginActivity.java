@@ -48,11 +48,16 @@ public class LoginActivity extends BaseActivity {
         activity_login_login_go.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                finish();
+                login();
             }
         });
 
 
+    }
+
+    public void login(){
+
+        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        finish();
     }
 }
