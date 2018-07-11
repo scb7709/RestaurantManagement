@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.activity.AboutUsSetActivity;
@@ -30,7 +31,7 @@ public class SetFragment extends android.support.v4.app.Fragment implements View
     Activity activity;
     String head_url;
     CircleImageView fragment_set_headimage;
-
+    TextView fragment_set_account ;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -46,6 +47,11 @@ public class SetFragment extends android.support.v4.app.Fragment implements View
         super.onViewCreated(view, savedInstanceState);
         activity = getActivity();
         fragment_set_headimage = (CircleImageView) view.findViewById(R.id.fragment_set_headimage);
+        fragment_set_account=(TextView) view.findViewById(R.id.fragment_set_account);
+        String account=ShareUitls.getString(activity, "login_phone", "");
+        if(account.length()>0){
+            fragment_set_account.setText(account);
+        }
         view.findViewById(R.id.fragment_set_accountset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_storeset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_tableset).setOnClickListener(this);

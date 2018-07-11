@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 
 public class Food implements Serializable{
-    private String food_id;
-    private int food_classifyId;
-    private String food_image;
-    private String food_name;
-    private String food_money;
-    private String food_num;
+    private String food_id;//id
+    private int food_classifyId;//分类ID
+    private String food_image;//菜品图片
+    private String food_name;//菜品名称
+    private String food_money;//菜品价格
+    private String food_num;//菜品数量
 
 
 

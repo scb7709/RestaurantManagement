@@ -38,6 +38,7 @@
                 android:textSize="15dp" />
 
             <TextView
+                android:id="@+id/fragment_set_account"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -166,11 +167,10 @@
         android:id="@+id/fragment_set_foodmaterialset"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-android:visibility="gone"
-
         android:layout_marginTop="5dp"
         android:background="@color/white"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="visible">
 
         <TextView
             android:layout_width="wrap_content"

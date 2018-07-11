@@ -28,7 +28,7 @@ import com.zyhp.restaurantmanagement.utils.ShareUitls;
 
 public class AccountSetActivity extends BaseActivity implements View.OnClickListener {
     CircleImageView activity_accountset_headimage;
-    TextView activity_accountset_email, activity_accountset_phonenumber;
+    TextView activity_accountset_email, activity_accountset_phonenumber,activity_accountset_account;
 
 
     private TextView view_publictitle_title;
@@ -52,6 +52,12 @@ public class AccountSetActivity extends BaseActivity implements View.OnClickList
         view_publictitle_back = (RelativeLayout) findViewById(R.id.view_publictitle_back);
         view_publictitle_back.setOnClickListener(this);
         activity_accountset_email = (TextView) findViewById(R.id.activity_accountset_email);
+        activity_accountset_account = (TextView) findViewById(R.id.activity_accountset_account);
+
+        String account=ShareUitls.getString(accountSetActivity, "login_phone", "");
+        if(account.length()>0){
+            activity_accountset_account.setText(account);
+        }
         activity_accountset_phonenumber = (TextView) findViewById(R.id.activity_accountset_phonenumber);
         activity_accountset_headimage = (CircleImageView) findViewById(R.id.activity_accountset_headimage);
         head_url = ShareUitls.getString(accountSetActivity, "head_url", "");
@@ -121,6 +127,8 @@ public class AccountSetActivity extends BaseActivity implements View.OnClickList
                 });
                 break;
             case R.id.activity_accountset_exitlogin:
+                ShareUitls.putString(AccountSetActivity.this, "login_phone", "");//本地储存账户信息
+                ShareUitls.putString(AccountSetActivity.this, "login_password", "");//本地储存账户信息
                 MainActivity.activity.finish();
                 startActivity(new Intent(AccountSetActivity.this, LoginActivity.class));
                 finish();

@@ -99,35 +99,7 @@ public class FoodFragment extends Fragment {
         classifylist.add(new FoodClassify(7, "优惠"));
         classifylist.add(new FoodClassify(8, "饮品"));
 
-        foodList = GetOrderList.getOrderList();
-
-       /*
-        for(int i=0;i<100;i++){
-            int temp=i%6;
-            Food food;
-            switch (temp){
-                case 0 :
-                    food=new Food(temp,"主食"+i, GetString.createRandom(true,2));
-                    break;
-                case 1 :
-
-                    break;
-                case 2 :
-
-                    break;
-                case 3 :
-
-                    break;
-                case 4 :
-
-                    break;
-
-            }
-
-        }*/
-
-        // fragment_foodmaterial_classify.addFooterView(footView);//添加尾部
-        //fragment_foodmaterial_classify.setSelector(R.color.redlow);
+        foodList = GetOrderList.getFoodList();
         classifyAdapter = new FoodClassifyAdapter(classifylist, layoutInflater);
         fragment_food_classify.setAdapter(classifyAdapter);
 
@@ -310,6 +282,7 @@ public class FoodFragment extends Fragment {
                                         foodAdapter.notifyDataSetChanged();
                                     }
                                 }
+                                popupWindow.dismiss();
 
                             } else {
                                 MyShow.myToash(getActivity(), "价格输入错误");
@@ -320,7 +293,7 @@ public class FoodFragment extends Fragment {
 
                     }
 
-                    popupWindow.dismiss();
+
                 } else {
 
                     MyShow.myToash(getActivity(), "名称不能为空");

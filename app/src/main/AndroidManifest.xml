@@ -46,6 +46,7 @@
         <activity android:name=".activity.AboutUsSetActivity"></activity>
         <activity android:name=".activity.TableSetActivity"></activity>
         <activity android:name=".activity.StaffDetialsActivity"></activity>
+        <activity android:name=".activity.FoodmaterialDetialsActivity"></activity>
 
 
     </application>
