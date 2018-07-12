@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -84,6 +86,34 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
         activity_foodmateraildetials_add.setOnClickListener(this);
         activity_foodmateraildetials_purchase_submit.setOnClickListener(this);
         activity_foodmateraildetials_purchase_cancel.setOnClickListener(this);
+        activity_foodmateraildetials_purchase_edit.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                String number = activity_foodmateraildetials_purchase_edit.getText().toString();
+                if (number.length() > 0) {
+                    if (!Regular.isPositiveInteger(number)) {
+                        MyShow.myToash(activity,"输入购买数量不合法");
+                    } else {
+                        totalPrice=Integer.parseInt(number)*unitPrice;
+                        activity_foodmateraildetials_purchase_total.setText(totalPrice+"");
+                    }
+                } else {
+                    activity_foodmateraildetials_purchase_total.setText("0");
+                }
+
+            }
+        });
     }
 
     @Override
