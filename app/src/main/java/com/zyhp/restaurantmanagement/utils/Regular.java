@@ -26,7 +26,7 @@ public class Regular {
     /**
      * 正则表达式：验证全数字
      */
-    public static final String REGEX_PositiveInteger = "^[1-9][0-9]+$";
+    public static final String REGEX_PositiveInteger = "^[0-9]+$";
     //手机号判断
     public static boolean isMobile(String mobiles) {
         if (TextUtils.isEmpty(mobiles)) return false;

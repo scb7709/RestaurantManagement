@@ -47,7 +47,7 @@
         <activity android:name=".activity.TableSetActivity"></activity>
         <activity android:name=".activity.StaffDetialsActivity"></activity>
         <activity android:name=".activity.FoodmaterialDetialsActivity"></activity>
-
+        <activity android:name=".activity.CompletePayActivity"></activity>
 
     </application>
 

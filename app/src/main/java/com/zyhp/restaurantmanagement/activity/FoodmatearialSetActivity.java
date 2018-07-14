@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -267,6 +268,7 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
     }
 
     int current_classify_possition;//当前选中的分类
+    int choice_foodmaterial_possition;//选中的食材位置
 
     private void setListViewListener() {
         activity_foodmaterial_classify.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -307,17 +309,29 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
         activity_foodmaterial_foodmaterial.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                choice_foodmaterial_possition=i;//查看了第I的食材的详情
                 Intent intent = new Intent();
                 intent.setClass(activity, FoodmaterialDetialsActivity.class);
                 intent.putExtra("foodmaterial", (Foodmaterial) (tempfoodmateriallist.get(i)));
-                startActivity(intent);
+                startActivityForResult(intent,0);
 
             }
         });
 
 
     }
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.i("requestCode",requestCode+" "+resultCode+(data==null));
+        if(requestCode==resultCode&&requestCode==0&&data!=null){
+            Log.i("requestCode",requestCode+" "+resultCode);
+            String  totalStock=data.getStringExtra("totalStock");
+            ((Foodmaterial) (tempfoodmateriallist.get(choice_foodmaterial_possition))).setFoodmaterial_stock(totalStock);
+            foodmaterialAdapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public void onClick(View view) {

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -49,14 +50,17 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
     Foodmaterial foodmaterial;
     int unitPrice;//单价
     int totalPrice;//总价
+    int totalStock;//总库存（原来的+新买的）
     Activity activity;
+Intent intent;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foodmateraildetials);
-        foodmaterial = (Foodmaterial) getIntent().getSerializableExtra("foodmaterial");
-        unitPrice=(int)(Math.random()*20+1);//随机生成单价
-        activity=FoodmaterialDetialsActivity.this;
+        intent=getIntent();
+        foodmaterial = (Foodmaterial) intent.getSerializableExtra("foodmaterial");
+        unitPrice = (int) (Math.random() * 20 + 1);//随机生成单价
+        activity = FoodmaterialDetialsActivity.this;
         findView();
     }
 
@@ -71,7 +75,11 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
         activity_foodmateraildetials_stock = (TextView) findViewById(R.id.activity_foodmateraildetials_stock);
         activity_foodmateraildetials_unit1 = (TextView) findViewById(R.id.activity_foodmateraildetials_unit1);
         activity_foodmateraildetials_purchase_layout = (LinearLayout) findViewById(R.id.activity_foodmateraildetials_purchase_layout);
-
+        activity_foodmateraildetials_unitPrice.setText(unitPrice + "");
+        activity_foodmateraildetials_unit.setText("元/" + foodmaterial.getFoodmaterial_unit() + "");
+        activity_foodmateraildetials_stock.setText(foodmaterial.getFoodmaterial_stock() + "");
+        totalStock=Integer.parseInt(foodmaterial.getFoodmaterial_stock());
+        activity_foodmateraildetials_unit1.setText(foodmaterial.getFoodmaterial_unit() + "");
         activity_foodmateraildetials_purchase_cancel = (ImageView) findViewById(R.id.activity_foodmateraildetials_purchase_cancel);
         activity_foodmateraildetials_purchase_edit = (EditText) findViewById(R.id.activity_foodmateraildetials_purchase_edit);
 
@@ -81,6 +89,8 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
         activity_foodmateraildetials_purchase_unit = (TextView) findViewById(R.id.activity_foodmateraildetials_purchase_unit);
         activity_foodmateraildetials_purchase_total = (TextView) findViewById(R.id.activity_foodmateraildetials_purchase_total);
         activity_foodmateraildetials_purchase_submit = (Button) findViewById(R.id.activity_foodmateraildetials_purchase_submit);
+        activity_foodmateraildetials_purchase_unitPrice.setText(unitPrice + "");
+        activity_foodmateraildetials_purchase_unit.setText("元/" + foodmaterial.getFoodmaterial_unit() + "");
 
         activity_foodmateraildetials_purchase_add.setOnClickListener(this);
         activity_foodmateraildetials_add.setOnClickListener(this);
@@ -103,10 +113,11 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
                 String number = activity_foodmateraildetials_purchase_edit.getText().toString();
                 if (number.length() > 0) {
                     if (!Regular.isPositiveInteger(number)) {
-                        MyShow.myToash(activity,"输入购买数量不合法");
+                        MyShow.myToash(activity, "输入购买数量不合法");
                     } else {
-                        totalPrice=Integer.parseInt(number)*unitPrice;
-                        activity_foodmateraildetials_purchase_total.setText(totalPrice+"");
+                        totalPrice = Integer.parseInt(number) * unitPrice + 5;
+                        activity_foodmateraildetials_purchase_total.setText(totalPrice + "");
+                        Log.i("totalPrice", totalPrice + "  " + unitPrice);
                     }
                 } else {
                     activity_foodmateraildetials_purchase_total.setText("0");
@@ -132,15 +143,17 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
                 if (number.length() > 0) {
                     if (!Regular.isPositiveInteger(number)) {
                         //activity_foodmateraildetials_purchase_edit.setText("1");
-                        MyShow.myToash(activity,"输入购买数量不合法");
+                        MyShow.myToash(activity, "输入购买数量不合法");
                     } else {
                         activity_foodmateraildetials_purchase_edit.setText((Integer.parseInt(number) + 1) + "");
-                        totalPrice=(Integer.parseInt(number) + 1)*unitPrice;
-                        activity_foodmateraildetials_purchase_total.setText(totalPrice+"");
+                        totalPrice = (Integer.parseInt(number) + 1) * unitPrice + 5;
+                        Log.i("totalPrice", totalPrice + "  " + unitPrice);
+                        activity_foodmateraildetials_purchase_total.setText(totalPrice + "");
                     }
                 } else {
                     activity_foodmateraildetials_purchase_edit.setText("1");
-                    activity_foodmateraildetials_purchase_total.setText(unitPrice+"");
+                    totalPrice = unitPrice + 5;
+                    activity_foodmateraildetials_purchase_total.setText(totalPrice + "");
                 }
 
 
@@ -152,16 +165,16 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
                 String number2 = activity_foodmateraildetials_purchase_edit.getText().toString();
                 if (number2.length() > 0) {
                     if (!Regular.isPositiveInteger(number2)) {
-                        MyShow.myToash(activity,"输入购买数量不合法");
+                        MyShow.myToash(activity, "输入购买数量不合法");
                     } else {
-                        totalPrice=Integer.parseInt(number2)*unitPrice;
-                        startActivityForResult(new Intent(activity,CompletePayActivity.class).putExtra("totalPrice",totalPrice+""),0);
+                        totalPrice = Integer.parseInt(number2) * unitPrice+5;
+                        totalStock=Integer.parseInt(number2)+totalStock;
+                        startActivityForResult(new Intent(activity, CompletePayActivity.class).putExtra("totalPrice", totalPrice + "").putExtra("name", foodmaterial.getFoodmaterial_name() + ""), 0);
                         cancleAdd();
                     }
                 } else {
-                    MyShow.myToash(activity,"请输入购买数量");
+                    MyShow.myToash(activity, "请输入购买数量");
                 }
-
                 break;
         }
     }
@@ -170,5 +183,19 @@ public class FoodmaterialDetialsActivity extends BaseActivity implements View.On
         activity_foodmateraildetials_purchase_edit.setText("");
         activity_foodmateraildetials_purchase_layout.setVisibility(View.GONE);
         activity_foodmateraildetials_purchase_total.setText("0");
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==resultCode&&requestCode==0){
+            activity_foodmateraildetials_stock.setText(totalStock+ "");
+            Intent intent = new Intent();
+            intent.putExtra("totalStock",""+totalStock);
+            setResult(0, intent);
+
+        }
     }
 }
