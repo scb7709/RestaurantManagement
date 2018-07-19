@@ -178,6 +178,7 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                         int size = classifylist.size();
                         classifylist.add(new FoodmaterialClassify(size, name));
                         spinnerlist.add(name);
+
                         foodmaterialClassifyAdapter = new FoodmaterialClassifyAdapter(classifylist, layoutInflater);
                         activity_foodmaterial_classify.setAdapter(foodmaterialClassifyAdapter);
                         MyShow.myToash(activity, "添加成功");
