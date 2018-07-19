@@ -265,7 +265,8 @@ public class FoodFragment extends Fragment {
                         spinnerlist.add(name);
                         classifyAdapter = new FoodClassifyAdapter(classifylist, layoutInflater);
                         fragment_food_classify.setAdapter(classifyAdapter);
-
+                        MyShow.myToash(getActivity(), "添加成功");
+                        popupWindow.dismiss();
                     } else {
 
                         String foodmoney = dialog_addfood_foodmoney.getText().toString();
@@ -274,6 +275,8 @@ public class FoodFragment extends Fragment {
                                 int spinnerchoiseposition = dialog_addfood_spinner.getSelectedItemPosition();
                                 Food addfood = new Food(spinnerchoiseposition, name, foodmoney);
                                 foodList.add(addfood);
+                                MyShow.myToash(getActivity(), "添加成功");
+                                popupWindow.dismiss();
                                 if (tempfoodlist.size() > 0) {
 
                                     Food food = (Food) tempfoodlist.get(0);
@@ -282,7 +285,7 @@ public class FoodFragment extends Fragment {
                                         foodAdapter.notifyDataSetChanged();
                                     }
                                 }
-                                popupWindow.dismiss();
+
 
                             } else {
                                 MyShow.myToash(getActivity(), "价格输入错误");

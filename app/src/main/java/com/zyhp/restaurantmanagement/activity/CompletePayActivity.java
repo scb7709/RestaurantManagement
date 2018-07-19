@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +25,7 @@ public class CompletePayActivity extends BaseActivity  implements View.OnClickLi
     private TextView view_publictitle_title,activity_completepay_name,activity_completepay_price;
 
     private RelativeLayout view_publictitle_back;
-
+ImageView activity_pay_pay_im,activity_pay_chat_im;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,9 +42,13 @@ public class CompletePayActivity extends BaseActivity  implements View.OnClickLi
         Intent intent=getIntent();
         activity_completepay_name = (TextView) findViewById(R.id.activity_completepay_name);
         activity_completepay_price = (TextView) findViewById(R.id.activity_completepay_price);
+        activity_pay_pay_im = (ImageView) findViewById(R.id.activity_pay_pay_im);
+        activity_pay_chat_im = (ImageView) findViewById(R.id.activity_pay_chat_im);
         activity_completepay_name.setText(intent.getStringExtra("name"));
         activity_completepay_price.setText(intent.getStringExtra("totalPrice"));
         findViewById(R.id.activity_pay_commit).setOnClickListener(this);
+        findViewById(R.id.activity_pay_chat_layout).setOnClickListener(this);
+        findViewById(R.id.activity_pay_pay_layout).setOnClickListener(this);
     }
 
     @Override
@@ -52,6 +57,16 @@ public class CompletePayActivity extends BaseActivity  implements View.OnClickLi
         switch (view.getId()) {
             case R.id.view_publictitle_back:
                 finish();
+                break;
+            case R.id.activity_pay_chat_layout:
+
+                activity_pay_chat_im.setImageResource(R.mipmap.icon_choice_active);
+                activity_pay_pay_im.setImageResource(R.mipmap.icon_choice_negative);
+
+                break;
+            case R.id.activity_pay_pay_layout:
+                activity_pay_chat_im.setImageResource(R.mipmap.icon_choice_negative);
+                activity_pay_pay_im.setImageResource(R.mipmap.icon_choice_active);
                 break;
             case R.id.activity_pay_commit:
                 MyShow.myToash(CompletePayActivity.this,"购买成功");

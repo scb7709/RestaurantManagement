@@ -180,7 +180,8 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                         spinnerlist.add(name);
                         foodmaterialClassifyAdapter = new FoodmaterialClassifyAdapter(classifylist, layoutInflater);
                         activity_foodmaterial_classify.setAdapter(foodmaterialClassifyAdapter);
-
+                        MyShow.myToash(activity, "添加成功");
+                        popupWindow.dismiss();
                     } else {
                         String unit = dialog_addfoodmaterial_foodmaterialunit.getText().toString();
                         if (unit.length() > 0) {
@@ -194,7 +195,10 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                                 if (foodmaterial1.getFoodmaterialclasdify_id()== spinnerchoiseposition) {//说明添加的是正在显示的
                                     tempfoodmateriallist.add(foodmaterial);
                                     foodmaterialAdapter.notifyDataSetChanged();
+
                                 }
+                                MyShow.myToash(activity, "添加成功");
+                                popupWindow.dismiss();
                             }
 
                         } else MyShow.myToash(activity, "单位不能为空");
@@ -231,9 +235,10 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
         tempfoodmateriallist = new ArrayList<>();
         classifylist = new ArrayList<>();
         spinnerlist = new ArrayList<>();
+
         for(int i=0;i<classfly.length;i++){
             String str=classfly[i];
-            spinnerlist.add("str");
+            spinnerlist.add(str);
             classifylist.add(new FoodmaterialClassify(i, str));
         }
 

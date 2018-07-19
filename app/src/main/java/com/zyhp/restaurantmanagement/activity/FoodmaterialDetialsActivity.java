@@ -76,6 +76,7 @@ Intent intent;
         activity_foodmateraildetials_unit1 = (TextView) findViewById(R.id.activity_foodmateraildetials_unit1);
         activity_foodmateraildetials_purchase_layout = (LinearLayout) findViewById(R.id.activity_foodmateraildetials_purchase_layout);
         activity_foodmateraildetials_unitPrice.setText(unitPrice + "");
+        activity_foodmateraildetials_name.setText(foodmaterial.getFoodmaterial_name());
         activity_foodmateraildetials_unit.setText("元/" + foodmaterial.getFoodmaterial_unit() + "");
         activity_foodmateraildetials_stock.setText(foodmaterial.getFoodmaterial_stock() + "");
         totalStock=Integer.parseInt(foodmaterial.getFoodmaterial_stock());
