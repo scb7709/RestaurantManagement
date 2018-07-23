@@ -7,11 +7,9 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
-import com.zyhp.restaurantmanagement.utils.DiskBitmap;
 import com.zyhp.restaurantmanagement.utils.MyShow;
 import com.zyhp.restaurantmanagement.utils.ShareUitls;
 
@@ -42,13 +40,13 @@ public class LoginActivity extends BaseActivity {
         activity_login_forgetPwd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, ForgetPasswordActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterAndChengePasswordActivity.class).putExtra("flag","chenegepassword"));
             }
         });
         activity_login_register_text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+                startActivity(new Intent(LoginActivity.this, RegisterAndChengePasswordActivity.class).putExtra("flag","register"));
             }
         });
         activity_login_login_go.setOnClickListener(new View.OnClickListener() {
