@@ -15,6 +15,7 @@ import com.zyhp.restaurantmanagement.activity.AboutUsSetActivity;
 import com.zyhp.restaurantmanagement.activity.AccountSetActivity;
 import com.zyhp.restaurantmanagement.activity.ActivitySetActivity;
 import com.zyhp.restaurantmanagement.activity.FoodmatearialSetActivity;
+import com.zyhp.restaurantmanagement.activity.MemberSetActivity;
 import com.zyhp.restaurantmanagement.activity.StaffSetActivity;
 import com.zyhp.restaurantmanagement.activity.StoreSetActivity;
 import com.zyhp.restaurantmanagement.activity.TableSetActivity;
@@ -59,6 +60,8 @@ public class SetFragment extends android.support.v4.app.Fragment implements View
         view.findViewById(R.id.fragment_set_foodmaterialset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_activityset).setOnClickListener(this);
         view.findViewById(R.id.fragment_set_aboutus).setOnClickListener(this);
+        view.findViewById(R.id.fragment_set_memberset).setOnClickListener(this);
+
     }
 
     @Override
@@ -82,6 +85,10 @@ public class SetFragment extends android.support.v4.app.Fragment implements View
             case R.id.fragment_set_tableset:
                 intent.setClass(activity, TableSetActivity.class);
                 break;
+            case R.id.fragment_set_memberset:
+                intent.setClass(activity, MemberSetActivity.class);
+                break;
+
             case R.id.fragment_set_staffset:
                 intent.setClass(activity, StaffSetActivity.class);
                 break;

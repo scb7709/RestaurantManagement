@@ -59,7 +59,7 @@ public class RegisterAndChengePasswordActivity extends BaseActivity implements V
                 activity_registerandchengepassword_pwd.setHint("请输入密码");
                 activity_registerandchengepassword_pwd_again.setHint("确认密码");
                 break;
-            case "chengepassword":
+            case "chenegepassword":
                 view_publictitle_title.setText("更改密码");
                 activity_registerandchengepassword_pwd.setHint("请输入新密码");
                 activity_registerandchengepassword_pwd_again.setHint("确认新密码");
@@ -90,7 +90,7 @@ public class RegisterAndChengePasswordActivity extends BaseActivity implements V
                         if (!Regular.isMobile(phone)) {
                             MyShow.myToash(activity, "手机号格式错误");
                         } else {
-
+                            activity_registerandchengepassword_getverifycode.setClickable(false);
                             time.start();
                             getverifycode();
                         }
@@ -102,6 +102,8 @@ public class RegisterAndChengePasswordActivity extends BaseActivity implements V
 
                 phone = activity_registerandchengepassword_phone.getText().toString();
                 String verifycode = activity_registerandchengepassword_verifycode.getText().toString();
+                String password1 = activity_registerandchengepassword_pwd.getText().toString();
+                String password2 = activity_registerandchengepassword_pwd_again.getText().toString();
                 if (phone.length() == 0) {
                     MyShow.myToash(activity, "手机号不能为空");
                 } else {
@@ -114,20 +116,31 @@ public class RegisterAndChengePasswordActivity extends BaseActivity implements V
                             if (verifycode.length() == 0) {
                                 MyShow.myToash(activity, "验证码不能为空");
                             } else {
-                                if (true) {//验证码正确性检验
-                                    time.cancel();
-                                    switch (flag) {
-                                        case "register":
-                                            startActivity(new Intent(activity, MainActivity.class));
-                                            finish();
-                                            break;
-                                        case "chengepassword":
-                                            startActivity(new Intent(activity, LoginActivity.class));
-                                            finish();
-                                            break;
+                                if(password1.length()>0&&password2.length()>0){
+                                    if(password1.equals(password2)){
 
+                                        if (true) {//验证码正确性检验
+                                            time.cancel();
+                                            switch (flag) {
+                                                case "register":
+                                                    startActivity(new Intent(activity, MainActivity.class));
+                                                    finish();
+                                                    break;
+                                                case "chenegepassword":
+                                                    startActivity(new Intent(activity, LoginActivity.class));
+                                                    finish();
+                                                    break;
+
+                                            }
+                                        }
+                                    }else {
+                                        MyShow.myToash(activity, "密码不一致");
                                     }
+
+                                }else {
+                                    MyShow.myToash(activity, "密码不能为空");
                                 }
+
                             }
                         }
                     }

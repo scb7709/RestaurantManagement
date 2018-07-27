@@ -1,1 +1,1 @@
-include ':app', ':heartimage'
+include ':app'

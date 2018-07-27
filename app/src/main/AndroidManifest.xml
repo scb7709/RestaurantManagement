@@ -48,6 +48,9 @@
         <activity android:name=".activity.StaffDetialsActivity"></activity>
         <activity android:name=".activity.FoodmaterialDetialsActivity"></activity>
         <activity android:name=".activity.CompletePayActivity"></activity>
+        <activity android:name=".activity.MemberSetActivity"></activity>
+
+        <activity android:name=".activity.MemberDetialsActivity"></activity>
 
     </application>
 
