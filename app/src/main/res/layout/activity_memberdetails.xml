@@ -90,7 +90,7 @@
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
-        android:background="@drawable/login_selector"
+        android:background="@drawable/memberdatails_shape"
         android:orientation="horizontal">
 
         <RadioButton
@@ -115,7 +115,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="5dp"
             android:layout_weight="1"
             android:button="@null"
             android:gravity="center"

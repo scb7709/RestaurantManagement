@@ -57,7 +57,7 @@ public class MemberDetialsActivity extends BaseActivity implements View.OnClickL
 
     RadioGroup activity_menberdetials_RadioGroup;
     RadioButton activity_menberdetials_information, activity_menberdetials_consumptionrecords;
-
+    boolean isOnclick;//用来判断是否是点击切换的 如果是就不触发 viewpage的 切换监听代码
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -94,21 +94,21 @@ public class MemberDetialsActivity extends BaseActivity implements View.OnClickL
         activity_menberdetials_ViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+                isOnclick=false;
             }
 
             @Override
             public void onPageSelected(int position) {
-                Log.i("onPageSelected1",""+Position);
-                if (Position != 0) {
-                    Position = 0;
-                    int red = Color.parseColor("#EE0000");
-                    activity_menberdetials_information.setTextColor(red);
-                } else {
-                    Position = 1;
-                    int black = Color.parseColor("#000000");
-                    activity_menberdetials_consumptionrecords.setTextColor(black);
+                if(!isOnclick) {
+                    if (position == 0) {
+                        Position = 0;
+                        activity_menberdetials_RadioGroup.check(R.id.activity_menberdetials_information);
+                    } else {
+                        Position = 1;
+                        activity_menberdetials_RadioGroup.check(R.id.activity_menberdetials_consumptionrecords);
+                    }
                 }
+
             }
 
             @Override
@@ -124,16 +124,16 @@ public class MemberDetialsActivity extends BaseActivity implements View.OnClickL
 
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
+        isOnclick=true;
         switch (checkedId) {
+
             case R.id.activity_menberdetials_information:
-                Log.i("onPageSelected2",""+Position);
                 if (Position != 0) {
                     Position = 0;
                     activity_menberdetials_ViewPager.setCurrentItem(0);
                 }
                 break;
             case R.id.activity_menberdetials_consumptionrecords:
-                Log.i("onPageSelected3",""+Position);
                 if (Position != 1) {
                     Position = 1;
                     activity_menberdetials_ViewPager.setCurrentItem(1);

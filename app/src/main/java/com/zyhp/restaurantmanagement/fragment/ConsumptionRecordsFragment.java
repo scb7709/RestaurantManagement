@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 
 import com.zyhp.restaurantmanagement.R;
@@ -20,7 +21,7 @@ import com.zyhp.restaurantmanagement.R;
 
 public class ConsumptionRecordsFragment extends Fragment {
 
-
+ListView fragment_recordsofconsumption_listview;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class ConsumptionRecordsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        fragment_recordsofconsumption_listview=(ListView) view.findViewById(R.id.fragment_recordsofconsumption_listview);
+
 
     }
 
