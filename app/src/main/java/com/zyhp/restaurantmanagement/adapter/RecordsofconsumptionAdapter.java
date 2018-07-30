@@ -69,7 +69,7 @@ public class RecordsofconsumptionAdapter extends BaseAdapter {
         }
 
         Member member = getItem(i);
-        orderViewHolder.listview_item_ordernumber.setTextderti(order.getOrder_id());
+        //orderViewHolder.listview_item_ordernumber.setTextderti(order.getOrder_id());
 
         return view;
     }

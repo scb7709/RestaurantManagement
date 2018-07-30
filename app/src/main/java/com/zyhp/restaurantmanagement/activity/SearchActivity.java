@@ -65,7 +65,8 @@ public class SearchActivity extends BaseActivity implements View.OnClickListener
         objects = (List<Object>) intent.getSerializableExtra("data");
         switch (flag) {
             case "order":
-                view_publictitle_title.setText("我的订单");
+                String time=intent.getStringExtra("time");
+                view_publictitle_title.setText(time);
                 baseAdapter = new OrderAdapter(objects, layoutInflater);
                 activity_search_edittext.setHint("输入关键字搜索(单号、昵称)");
                 break;

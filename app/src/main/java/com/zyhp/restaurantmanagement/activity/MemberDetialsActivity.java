@@ -1,19 +1,13 @@
 package com.zyhp.restaurantmanagement.activity;
 
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.annotation.IdRes;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -23,16 +17,9 @@ import android.widget.TextView;
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.entity.Member;
 import com.zyhp.restaurantmanagement.fragment.ConsumptionRecordsFragment;
-import com.zyhp.restaurantmanagement.fragment.IncomeFragment;
+
 import com.zyhp.restaurantmanagement.fragment.MemberInformationFragment;
-import com.zyhp.restaurantmanagement.fragment.OrderFragment;
-import com.zyhp.restaurantmanagement.myview.CircleImageView;
-import com.zyhp.restaurantmanagement.utils.DiskBitmap;
-import com.zyhp.restaurantmanagement.utils.GetChoiceDialog;
-import com.zyhp.restaurantmanagement.utils.GetDialog;
-import com.zyhp.restaurantmanagement.utils.MyShow;
-import com.zyhp.restaurantmanagement.utils.Regular;
-import com.zyhp.restaurantmanagement.utils.ShareUitls;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +54,7 @@ public class MemberDetialsActivity extends BaseActivity implements View.OnClickL
         findView();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     void findView() {
 
         view_publictitle_title = (TextView) findViewById(R.id.view_publictitle_title);
@@ -122,6 +110,7 @@ public class MemberDetialsActivity extends BaseActivity implements View.OnClickL
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, @IdRes int checkedId) {
         isOnclick=true;

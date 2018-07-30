@@ -142,14 +142,7 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fragment_income_date:
-                //int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
-                //int style=DatePickerDialog.BUTTON_NEGATIVE;
                  int style= AlertDialog.THEME_HOLO_LIGHT;
-              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
-              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
-              //  int style=DatePickerDialog.THEME_DEVICE_DEFAULT_DARK;
-
-
                 DatePickerDialog datePickerDialog=    new DatePickerDialog(getActivity(),style,
                         new DatePickerDialog.OnDateSetListener() {
                             @Override
@@ -194,10 +187,9 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
                     }
                     orderList.add(order);
                 }
-
                 Intent intent =new Intent(getActivity(),SearchActivity.class);
-
                 intent.putExtra("flag","order");
+                intent.putExtra("time", fragment_income_date.getText().toString());
                 intent.putExtra("data", (Serializable) orderList);
                 startActivity(intent);
                 break;
