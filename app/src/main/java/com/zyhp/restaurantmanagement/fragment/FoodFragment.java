@@ -30,6 +30,7 @@ import com.zyhp.restaurantmanagement.adapter.FoodAdapter;
 import com.zyhp.restaurantmanagement.adapter.FoodClassifyAdapter;
 import com.zyhp.restaurantmanagement.entity.Food;
 import com.zyhp.restaurantmanagement.entity.FoodClassify;
+import com.zyhp.restaurantmanagement.utils.GetDialog;
 import com.zyhp.restaurantmanagement.utils.GetOrderList;
 import com.zyhp.restaurantmanagement.utils.ImageUtil;
 import com.zyhp.restaurantmanagement.utils.MyShow;
@@ -161,19 +162,53 @@ public class FoodFragment extends Fragment {
 
             }
         });
+        fragment_food_classify.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                GetDialog.IsOperation(getActivity(), "删除"+classifylist.get(i).getFoodclassify_name()+"分类", "是否删除", new GetDialog.IsOperationInterface() {
+                    @Override
+                    public void isOperation() {
+                        classifylist.remove(i);
 
+                        classifyAdapter.notifyDataSetChanged();
+                    }
+                });
+
+                return true;
+            }
+        });
         fragment_food_food.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), FoodDetialsActivity.class);
 
-                intent.putExtra("food", (Food) (tempfoodlist.get(i)));
+                intent.putExtra("food", ((Food) (tempfoodlist.get(i))));
                 startActivity(intent);
 
             }
         });
+        fragment_food_food.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+               final Food temp=((Food) (tempfoodlist.get(i)));
+                GetDialog.IsOperation(getActivity(), "删除"+temp.getFood_name(), "是否删除", new GetDialog.IsOperationInterface() {
+                    @Override
+                    public void isOperation() {
+                        tempfoodlist.remove(i);
 
+                        classifyAdapter.notifyDataSetChanged();
+                        for (Object food:foodList){
+                            if(((Food)food).getFood_id().equals(temp.getFood_id())){
+                                foodList.remove(food);
+                            }
+                        }
+                    }
+                });
+
+                return true;
+            }
+        });
 
     }
 

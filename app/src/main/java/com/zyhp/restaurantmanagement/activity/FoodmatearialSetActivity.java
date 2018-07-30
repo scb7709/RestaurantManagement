@@ -30,6 +30,7 @@ import com.zyhp.restaurantmanagement.entity.Food;
 import com.zyhp.restaurantmanagement.entity.FoodClassify;
 import com.zyhp.restaurantmanagement.entity.Foodmaterial;
 import com.zyhp.restaurantmanagement.entity.FoodmaterialClassify;
+import com.zyhp.restaurantmanagement.utils.GetDialog;
 import com.zyhp.restaurantmanagement.utils.GetOrderList;
 import com.zyhp.restaurantmanagement.utils.ImageUtil;
 import com.zyhp.restaurantmanagement.utils.MyShow;
@@ -312,6 +313,20 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
             }
         });
 
+        activity_foodmaterial_classify.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                GetDialog.IsOperation(activity, "删除"+classifylist.get(i).getFoodclassify_name()+"分类", "是否删除", new GetDialog.IsOperationInterface() {
+                    @Override
+                    public void isOperation() {
+                        classifylist.remove(i);
+                        foodmaterialClassifyAdapter.notifyDataSetChanged();
+                    }
+                });
+
+                return true;
+            }
+        });
         activity_foodmaterial_foodmaterial.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -325,7 +340,27 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
             }
         });
 
+        activity_foodmaterial_foodmaterial.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
+                final Foodmaterial temp=((Foodmaterial) (tempfoodmateriallist.get(i)));
+                GetDialog.IsOperation(activity, "删除"+temp.getFoodmaterial_name(), "是否删除", new GetDialog.IsOperationInterface() {
+                    @Override
+                    public void isOperation() {
+                        tempfoodmateriallist.remove(i);
 
+                        foodmaterialAdapter.notifyDataSetChanged();
+                        for (Object foodmateria:foodmaterialList){
+                            if(((Foodmaterial)foodmateria).getFoodmaterial_id()==temp.getFoodmaterial_id()){
+                                foodmaterialList.remove(foodmateria);
+                            }
+                        }
+                    }
+                });
+
+                return true;
+            }
+        });
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
