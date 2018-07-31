@@ -61,6 +61,14 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
 
     <LinearLayout
 
@@ -292,4 +300,6 @@
             android:layout_marginRight="15dp"
             android:src="@drawable/icon_right_arrow" />
     </LinearLayout>
+    </LinearLayout>
+</ScrollView>
 </LinearLayout>

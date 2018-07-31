@@ -7,16 +7,22 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.adapter.StaffAdapter;
+import com.zyhp.restaurantmanagement.entity.Income;
 import com.zyhp.restaurantmanagement.entity.Staff;
+import com.zyhp.restaurantmanagement.utils.GetDialog;
+import com.zyhp.restaurantmanagement.utils.GetString;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -24,14 +30,20 @@ import java.util.List;
  */
 
 public class StaffSetActivity extends BaseActivity implements View.OnClickListener {
-    private TextView view_publictitle_title,activity_staffset_nothing;
+    private TextView view_publictitle_title, activity_staffset_nothing;
 
-    private RelativeLayout view_publictitle_back;
+    private RelativeLayout view_publictitle_back, view_publictitle_right;
+    private Button view_publictitle_righticon,activity_staffset_addstaff_commit;
     Activity activity;
     ListView activity_staffset_listview;
-    List<Staff> staffList,tempobjects;
+    List<Staff> staffList, tempobjects;
     StaffAdapter staffAdapter;
-EditText activity_staffset_serachedittext;
+    EditText activity_staffset_serachedittext;
+LinearLayout activity_staffset_layout;
+    TextView activity_staffset_addstaff_birthday;
+    EditText activity_staffset_addstaff_name, activity_staffset_addstaff_phone, activity_staffset_addstaff_email, activity_staffset_addstaff_address,
+            activity_staffset_addstaff_department, activity_staffset_addstaff_position;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +57,12 @@ EditText activity_staffset_serachedittext;
         view_publictitle_title.setText("员工管理");
         view_publictitle_back = (RelativeLayout) findViewById(R.id.view_publictitle_back);
         view_publictitle_back.setOnClickListener(this);
-        activity_staffset_nothing= (TextView) findViewById(R.id.activity_staffset_nothing);
+        view_publictitle_right = (RelativeLayout) findViewById(R.id.view_publictitle_right);
+        view_publictitle_right.setOnClickListener(this);
+        view_publictitle_right.setVisibility(View.VISIBLE);
+        view_publictitle_righticon = (Button) findViewById(R.id.view_publictitle_righticon);
+        view_publictitle_righticon.setBackgroundResource(R.mipmap.picadd);
+        activity_staffset_nothing = (TextView) findViewById(R.id.activity_staffset_nothing);
         activity_staffset_listview = (ListView) findViewById(R.id.activity_staffset_listview);
         staffList = new ArrayList<>();
         //String name, int age, String phone, String email, String address, String department, String position
@@ -61,17 +78,17 @@ EditText activity_staffset_serachedittext;
         for (int i = 0; i < 80; i++) {
             int temp = i % 8;
             if (i < 20) {
-                staff = new Staff("201807"+i,"张三" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "厨房", position.get(0)[(int) (Math.random() * 4)]);
+                staff = new Staff("201807" + i, "张三" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "厨房", position.get(0)[(int) (Math.random() * 4)]);
 
             } else if (i < 40) {
-                staff = new Staff("201807"+i,"李四" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "保洁", position.get(1)[(int) (Math.random() * 4)]);
+                staff = new Staff("201807" + i, "李四" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "保洁", position.get(1)[(int) (Math.random() * 4)]);
 
 
             } else if (i < 60) {
-                staff = new Staff("201807"+i,"王五" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "收银", position.get(2)[(int) (Math.random() * 4)]);
+                staff = new Staff("201807" + i, "王五" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "收银", position.get(2)[(int) (Math.random() * 4)]);
 
             } else {
-                staff = new Staff("201807"+i,"张六" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "保安", position.get(3)[(int) (Math.random() * 4)]);
+                staff = new Staff("201807" + i, "张六" + i, 20 + (i / 3), "1850015068" + temp, "7709678198@163.com", "遵义市朝阳区北苑家园", "保安", position.get(3)[(int) (Math.random() * 4)]);
 
             }
             staffList.add(staff);
@@ -80,11 +97,26 @@ EditText activity_staffset_serachedittext;
         }
         staffAdapter = new StaffAdapter(staffList, this);
         activity_staffset_listview.setAdapter(staffAdapter);
+        setEditTextListener();
+
+        activity_staffset_layout=(LinearLayout)  findViewById(R.id.activity_staffset_layout);
+        activity_staffset_addstaff_commit= (Button) findViewById(R.id.activity_staffset_addstaff_commit);
+        activity_staffset_addstaff_commit.setOnClickListener(this);
+        activity_staffset_addstaff_birthday = (TextView) findViewById(R.id.activity_staffset_addstaff_birthday);
+        activity_staffset_addstaff_birthday.setOnClickListener(this);
+        activity_staffset_addstaff_name = (EditText) findViewById(R.id.activity_staffset_addstaff_name);
+        activity_staffset_addstaff_phone = (EditText) findViewById(R.id.activity_staffset_addstaff_phone);
+        activity_staffset_addstaff_email = (EditText) findViewById(R.id.activity_staffset_addstaff_email);
+        activity_staffset_addstaff_address = (EditText) findViewById(R.id.activity_staffset_addstaff_address);
+        activity_staffset_addstaff_department = (EditText) findViewById(R.id.activity_staffset_addstaff_department);
+        activity_staffset_addstaff_position = (EditText) findViewById(R.id.activity_staffset_addstaff_position);
+
+
     }
 
     public void setEditTextListener() {
-        activity_staffset_serachedittext=(EditText)findViewById(R.id.activity_staffset_serachedittext) ;
-        tempobjects=new ArrayList<>();
+        activity_staffset_serachedittext = (EditText) findViewById(R.id.activity_staffset_serachedittext);
+        tempobjects = new ArrayList<>();
         activity_staffset_serachedittext.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -118,7 +150,7 @@ EditText activity_staffset_serachedittext;
                         staffAdapter = new StaffAdapter(tempobjects, activity);
                         activity_staffset_listview.setAdapter(staffAdapter);
                         activity_staffset_nothing.setVisibility(View.GONE);
-                    }else {
+                    } else {
                         activity_staffset_nothing.setVisibility(View.VISIBLE);
 
                     }
@@ -128,8 +160,7 @@ EditText activity_staffset_serachedittext;
                     activity_staffset_listview.setAdapter(staffAdapter);
                 }
 
-                }
-
+            }
 
 
         });
@@ -141,6 +172,23 @@ EditText activity_staffset_serachedittext;
         switch (view.getId()) {
             case R.id.view_publictitle_back:
                 finish();
+                break;
+            case R.id.view_publictitle_right:
+                activity_staffset_layout.setVisibility(View.GONE);
+
+
+                break;
+
+            case R.id.activity_staffset_addstaff_birthday:
+                GetDialog.getTimeDialog(activity, "1930-01-01 00:00:00", Calendar.getInstance(), new GetDialog.GetTimeDialogInterface() {
+                    @Override
+                    public void getTimeDialogInterface(int year, int monthOfYear, int dayOfMonth) {
+                        activity_staffset_addstaff_birthday.setText(year+"-"+monthOfYear+"-"+dayOfMonth);
+                    }
+                });
+                break;
+            case R.id.activity_staffset_addstaff_commit:
+
                 break;
         }
     }

@@ -2,6 +2,7 @@ package com.zyhp.restaurantmanagement.utils;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.text.TextUtils;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -22,6 +24,11 @@ import com.zyhp.restaurantmanagement.R;
 import com.zyhp.restaurantmanagement.adapter.FoodClassifyAdapter;
 import com.zyhp.restaurantmanagement.entity.Food;
 import com.zyhp.restaurantmanagement.entity.FoodClassify;
+import com.zyhp.restaurantmanagement.entity.Income;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by Administrator on 2018/7/6.
@@ -153,5 +160,33 @@ public class GetDialog {
                 })
                 .create();
         dialog.show();
+    }
+
+  public interface GetTimeDialogInterface{
+        void  getTimeDialogInterface( int year, int monthOfYear, int dayOfMonth);
+   }
+
+    public  static  void getTimeDialog(Activity activity,String minTime,Calendar calendar,final  GetTimeDialogInterface getTimeDialogInterface){
+        int style= AlertDialog.THEME_HOLO_LIGHT;
+        DatePickerDialog datePickerDialog=    new DatePickerDialog(activity,style,
+                new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+                        getTimeDialogInterface.getTimeDialogInterface( year,  monthOfYear,  dayOfMonth);
+                    }
+                },
+                calendar.get(Calendar.YEAR),  calendar.get(Calendar.MONTH),  calendar.get(Calendar.DATE));
+
+        DatePicker datePicker = datePickerDialog.getDatePicker();
+        datePickerDialog.setTitle("选择查询日期");
+        try {
+            //设置最小日期
+            datePicker.setMinDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(minTime).getTime());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } //设置最大日期
+        datePicker.setMaxDate(System.currentTimeMillis());
+        datePickerDialog.show();
+
     }
 }

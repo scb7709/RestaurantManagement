@@ -106,7 +106,6 @@ public class OrderFragment extends Fragment implements  View.OnClickListener{
             @Override
             public void onClick(View view) {
                 Intent intent =new Intent(getActivity(),SearchActivity.class);
-
                 intent.putExtra("flag","order");
                 intent.putExtra("time","今日订单");
                 intent.putExtra("data", (Serializable) orderList);

@@ -23,6 +23,7 @@ import com.zyhp.restaurantmanagement.entity.Income;
 import com.zyhp.restaurantmanagement.entity.Order;
 import com.zyhp.restaurantmanagement.myview.ChartView;
 
+import com.zyhp.restaurantmanagement.utils.GetDialog;
 import com.zyhp.restaurantmanagement.utils.GetString;
 import com.zyhp.restaurantmanagement.utils.MyDate;
 
@@ -47,7 +48,8 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     TextView fragment_income_turnovers, fragment_income_foodcount, fragment_income_ordercount, fragment_income_date;
     LinearLayout fragment_income_orderlayout;
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    private ChartView fragment_income_chartview_day,fragment_income_chartview_month;
+    private ChartView fragment_income_chartview_day, fragment_income_chartview_month;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -79,14 +81,10 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         setIncomeData(income);
 
 
-       // incomeList = new ArrayList<>();
+        // incomeList = new ArrayList<>();
 
 
-
-
-
-
-        makeLine();
+        makeLine(Calendar.getInstance());
     }
 
     private void setIncomeData(Income income) {
@@ -98,10 +96,8 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void makeLine() {
-        Calendar cale =  Calendar.getInstance();
-        //int year = cale.get(Calendar.YEAR);
-        int month = cale.get(Calendar.MONTH) + 1;
+    private void makeLine(Calendar cale) {
+
         int day = cale.get(Calendar.DATE);
 
 
@@ -111,11 +107,11 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         List<Integer> yValue_day = new ArrayList<>();
         //折线对应的数据
         Map<String, Integer> value_day = new HashMap<>();
-        for (int i = 1; i<= day; i++) {
-            xValue_day.add(i+ "号");
-            value_day.put(i + "号", new Random().nextInt(9000)+1000);//60--240
+        for (int i = 1; i <= day; i++) {
+            xValue_day.add(i + "号");
+            value_day.put(i + "号", new Random().nextInt(9000) + 1000);//60--240
         }
-        for (int i = 1; i <=10; i++) {
+        for (int i = 1; i <= 10; i++) {
             yValue_day.add(i * 1000);
         }
         fragment_income_chartview_day.setValue(value_day, xValue_day, yValue_day);
@@ -138,33 +134,21 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     }
 
 
+
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.fragment_income_date:
-                 int style= AlertDialog.THEME_HOLO_LIGHT;
-                DatePickerDialog datePickerDialog=    new DatePickerDialog(getActivity(),style,
-                        new DatePickerDialog.OnDateSetListener() {
-                            @Override
-                            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                                Calendar calendar = Calendar.getInstance();
-                                calendar.set(year, monthOfYear, dayOfMonth);
-                                Income income = new Income(dateFormat.format(calendar.getTime()), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
-                                setIncomeData(income);
-                            }
-                        },
-                        2018, 6, 11);
-
-                DatePicker datePicker = datePickerDialog.getDatePicker();
-                datePickerDialog.setTitle("选择查询日期");
-                try {
-                    //设置最小日期
-                    datePicker.setMinDate(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2000-01-01 00:00:00").getTime());
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                } //设置最大日期
-                datePicker.setMaxDate(System.currentTimeMillis());
-                datePickerDialog.show();
+                GetDialog.getTimeDialog(getActivity(), "2000-01-01 00:00:00", Calendar.getInstance(), new GetDialog.GetTimeDialogInterface() {
+                    @Override
+                    public void getTimeDialogInterface(int year, int monthOfYear, int dayOfMonth) {
+                        Calendar calendar = Calendar.getInstance();
+                        calendar.set(year, monthOfYear, dayOfMonth);
+                        makeLine(calendar);
+                        Income income = new Income(dateFormat.format(calendar.getTime()), GetString.createRandom(true, 5), GetString.createRandom(true, 3), GetString.createRandom(true, 4));
+                        setIncomeData(income);
+                    }
+                });
                 break;
             case R.id.fragment_income_orderlayout:
                 List orderList= new ArrayList<>();

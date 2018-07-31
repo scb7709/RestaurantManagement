@@ -104,17 +104,7 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                 addPop(view, true);
             }
         });
-    /*    findViewById(R.id.activity_headtitle_icon).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, SearchActivity.class);
 
-                intent.putExtra("flag", "foodmaterial");
-                intent.putExtra("data", (Serializable) foodmaterialList);
-                startActivity(intent);
-
-            }
-        });*/
 
     }
 
@@ -316,15 +306,18 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
         activity_foodmaterial_classify.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int i, long l) {
-                GetDialog.IsOperation(activity, "删除"+classifylist.get(i).getFoodclassify_name()+"分类", "是否删除", new GetDialog.IsOperationInterface() {
-                    @Override
-                    public void isOperation() {
-                        classifylist.remove(i);
-                        foodmaterialClassifyAdapter.notifyDataSetChanged();
-                    }
-                });
+               if(i<classifylist.size()) {
 
-                return true;
+                   GetDialog.IsOperation(activity, "删除" + classifylist.get(i).getFoodclassify_name() + "分类", "是否删除", new GetDialog.IsOperationInterface() {
+                       @Override
+                       public void isOperation() {
+                           classifylist.remove(i);
+                           activity_foodmaterial_classify.setAdapter(foodmaterialClassifyAdapter);
+                       }
+                   });
+                   return  true;
+               }
+                return false;
             }
         });
         activity_foodmaterial_foodmaterial.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -348,13 +341,8 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                     @Override
                     public void isOperation() {
                         tempfoodmateriallist.remove(i);
-
                         foodmaterialAdapter.notifyDataSetChanged();
-                        for (Object foodmateria:foodmaterialList){
-                            if(((Foodmaterial)foodmateria).getFoodmaterial_id()==temp.getFoodmaterial_id()){
-                                foodmaterialList.remove(foodmateria);
-                            }
-                        }
+
                     }
                 });
 
