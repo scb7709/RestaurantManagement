@@ -9,7 +9,8 @@ import java.io.Serializable;
 public class Staff implements Serializable{
    private int  id;
     private  String name;//姓名
-    private  int age;//年龄
+    private  String birthday;//年龄
+
     private String phone;//电话号码
     private  String email;//邮箱
     private  String address;//住址
@@ -20,10 +21,10 @@ public class Staff implements Serializable{
     private   String hiredate;//入职时间
 
 
-    public Staff(String worknumber ,String name, int age, String phone, String email, String address, String department, String position) {
+    public Staff(String worknumber ,String name, String birthday, String phone, String email, String address, String department, String position) {
         this.worknumber = worknumber;
         this.name = name;
-        this.age = age;
+        this.birthday = birthday;
         this.phone = phone;
         this.email = email;
         this.address = address;
@@ -75,12 +76,12 @@ public class Staff implements Serializable{
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getPhone() {

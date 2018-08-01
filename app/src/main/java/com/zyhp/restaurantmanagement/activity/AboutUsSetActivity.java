@@ -1,5 +1,6 @@
 package com.zyhp.restaurantmanagement.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -17,13 +18,13 @@ import java.io.File;
  * Created by Administrator on 2018/7/6.
  */
 
-public class AboutUsSetActivity extends BaseActivity implements View.OnClickListener{
-    private TextView view_publictitle_title,activity_houpu_versioncode
-            ,activity_abouthoupu_cache;
+public class AboutUsSetActivity extends BaseActivity implements View.OnClickListener {
+    private TextView view_publictitle_title, activity_houpu_versioncode, activity_abouthoupu_cache;
 
     private RelativeLayout view_publictitle_back;
     private long IMAGEcache;//图片缓存大小
     private String SDPATH;//SD卡根目录
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +42,7 @@ public class AboutUsSetActivity extends BaseActivity implements View.OnClickList
         activity_houpu_versioncode = (TextView) findViewById(R.id.activity_houpu_versioncode);
         activity_abouthoupu_cache = (TextView) findViewById(R.id.activity_abouthoupu_cache);
         activity_houpu_versioncode.setText("当前版本：3.0.0");
-        activity_abouthoupu_cache.setText(IMAGEcache+"mb");
+        activity_abouthoupu_cache.setText(IMAGEcache + "mb");
         findViewById(R.id.activity_abouthoupu_update).setOnClickListener(this);
         findViewById(R.id.activity_abouthoupu_clearcache).setOnClickListener(this);
         findViewById(R.id.activity_abouthoupu_aboutus).setOnClickListener(this);
@@ -55,14 +56,14 @@ public class AboutUsSetActivity extends BaseActivity implements View.OnClickList
                 finish();
                 break;
             case R.id.activity_abouthoupu_update:
-                MyShow.myToash(AboutUsSetActivity.this,"已是最新版本");
+                MyShow.myToash(AboutUsSetActivity.this, "已是最新版本");
                 break;
             case R.id.activity_abouthoupu_clearcache:
                 FileViewer.deleteFolderFile(SDPATH + "/houpu/image", true);
-                activity_abouthoupu_cache.setText(0+"mb");
+                activity_abouthoupu_cache.setText(0 + "mb");
                 break;
             case R.id.activity_abouthoupu_aboutus:
-
+                startActivity(new Intent(AboutUsSetActivity.this, AboutHopuActivity.class));
                 break;
         }
     }

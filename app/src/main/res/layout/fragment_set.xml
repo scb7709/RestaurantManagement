@@ -59,7 +59,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
 <ScrollView
     android:layout_width="match_parent"
@@ -101,7 +101,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -134,7 +134,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fragment_set_memberset"
@@ -166,7 +166,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
     <LinearLayout
         android:id="@+id/fragment_set_staffset"
@@ -198,7 +198,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
 
 
@@ -231,7 +231,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
 
     <LinearLayout
@@ -264,7 +264,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
 
 
@@ -298,7 +298,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="15dp"
-            android:src="@drawable/icon_right_arrow" />
+            android:src="@mipmap/icon_right_arrow" />
     </LinearLayout>
     </LinearLayout>
 </ScrollView>

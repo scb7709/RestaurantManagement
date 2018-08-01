@@ -31,7 +31,7 @@ import java.util.Map;
 
 /**
  * 自定义折线图
- * Created by xiaoyunfei on 16/11/29.
+ * Created by scb on 18/7/15.
  */
 public class ChartView extends View {
     //xy坐标轴颜色

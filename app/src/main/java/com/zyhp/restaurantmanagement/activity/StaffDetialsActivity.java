@@ -56,7 +56,7 @@ public class StaffDetialsActivity extends BaseActivity implements View.OnClickLi
         activity_staffdetials_phone = (TextView) findViewById(R.id.activity_staffdetials_phone);
         activity_staffdetials_email = (TextView) findViewById(R.id.activity_staffdetials_email);
         activity_staffdetials_address = (TextView) findViewById(R.id.activity_staffdetials_address);
-
+       findViewById(R.id.activity_staffdetials_delete).setOnClickListener(this);
         if (staff != null) {
             activity_staffdetials_name.setText(staff.getName());
             activity_staffdetials_department.setText(staff.getDepartment());
@@ -80,6 +80,12 @@ public class StaffDetialsActivity extends BaseActivity implements View.OnClickLi
                 Intent dialIntent = new Intent( Intent.ACTION_CALL,Uri.parse("tel:"+ staff.getPhone()));
                 startActivity(dialIntent);
                 break;
+            case R.id.activity_staffdetials_delete:
+                Intent intent = new Intent();
+                setResult(0, intent);
+                finish();
+                break;
+
         }
     }
 }

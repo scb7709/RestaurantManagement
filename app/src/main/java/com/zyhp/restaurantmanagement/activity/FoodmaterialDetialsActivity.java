@@ -66,7 +66,7 @@ Intent intent;
 
     void findView() {
         view_publictitle_title = (TextView) findViewById(R.id.view_publictitle_title);
-        view_publictitle_title.setText("菜品详情");
+        view_publictitle_title.setText("食材详情");
         view_publictitle_back = (RelativeLayout) findViewById(R.id.view_publictitle_back);
         view_publictitle_back.setOnClickListener(this);
         activity_foodmateraildetials_name = (TextView) findViewById(R.id.activity_foodmateraildetials_name);

@@ -13,6 +13,6 @@
             android:layout_height="25dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/icon_add" />
+            android:src="@mipmap/icon_add" />
     </RelativeLayout>
 </RelativeLayout>

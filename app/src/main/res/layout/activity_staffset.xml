@@ -58,7 +58,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/search_icon" />
+                android:src="@mipmap/search_icon" />
         </RelativeLayout>
 
         <RelativeLayout

@@ -161,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/tablenumber_red_shape"
-                    android:src="@drawable/icon_add" />
+                    android:src="@mipmap/icon_add" />
             </LinearLayout>
 
             <View
@@ -268,7 +268,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="15dp"
                     android:background="@drawable/tablenumber_red_shape"
-                    android:src="@drawable/icon_add" />
+                    android:src="@mipmap/icon_add" />
             </RelativeLayout>
 
             <View

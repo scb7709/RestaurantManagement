@@ -2,6 +2,8 @@ package com.zyhp.restaurantmanagement.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
+import android.os.Message;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,14 +30,17 @@ public class StaffAdapter extends BaseAdapter {
     LayoutInflater layoutInflater;
     List<String> departmentlist;
     Activity activity;
+    Handler handler;
+
     public StaffAdapter() {
     }
 
-    public StaffAdapter(List<Staff> staffList, Activity activity) {
+    public StaffAdapter(List<Staff> staffList, Activity activity, Handler handler) {
         this.staffList = staffList;
         this.activity = activity;
         this.layoutInflater = LayoutInflater.from(activity);
         departmentlist = new ArrayList<>();
+        this.handler = handler;
     }
 
     public List<Staff> getList() {
@@ -59,7 +64,7 @@ public class StaffAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(final int i, View view, ViewGroup viewGroup) {
         OrderViewHolder orderViewHolder;
         if (view == null) {
             orderViewHolder = new OrderViewHolder();
@@ -69,7 +74,7 @@ public class StaffAdapter extends BaseAdapter {
             orderViewHolder.listview_item_staffname = (TextView) view.findViewById(R.id.listview_item_staffname);
             orderViewHolder.listview_item_staffdepartment = (TextView) view.findViewById(R.id.listview_item_staffdepartment);
 
-            orderViewHolder. listview_item_onclick_layout= (LinearLayout) view.findViewById(R.id.listview_item_onclick_layout);
+            orderViewHolder.listview_item_onclick_layout = (LinearLayout) view.findViewById(R.id.listview_item_onclick_layout);
             view.setTag(orderViewHolder);
         } else {
             orderViewHolder = (OrderViewHolder) view.getTag();
@@ -95,7 +100,10 @@ public class StaffAdapter extends BaseAdapter {
         orderViewHolder.listview_item_onclick_layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                activity.startActivity(new Intent(activity, StaffDetialsActivity.class).putExtra("staff",staff));
+                activity.startActivityForResult(new Intent(activity, StaffDetialsActivity.class).putExtra("staff", staff), 0);
+                Message message = Message.obtain();
+                message.obj = staff;
+                handler.dispatchMessage(message);//高速Activity 是点击的哪一行
             }
         });
         return view;
@@ -105,6 +113,6 @@ public class StaffAdapter extends BaseAdapter {
     class OrderViewHolder {
         CircleImageView listview_item_staffhead;
         TextView listview_item_staffdepartment, listview_item_staffname;
-      LinearLayout listview_item_onclick_layout;
+        LinearLayout listview_item_onclick_layout;
     }
 }
