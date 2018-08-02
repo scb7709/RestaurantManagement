@@ -40,7 +40,7 @@ public class StoreSetActivity extends BaseActivity implements View.OnClickListen
     TextView activity_storeset_storename, activity_storeset_address,
             activity_storeset_email, activity_storeset_phone,
             activity_storeset_QQ;
-    LinearLayout activity_accountset_takeout_layout, activity_accountset_takeout_meituanandbaidu;
+    LinearLayout activity_accountset_takeout_layout, activity_accountset_takeout_1, activity_accountset_takeout_2;
     Activity activity;
     CheckBox checkBoxs[];//存放外卖平台的数组
 
@@ -73,7 +73,9 @@ public class StoreSetActivity extends BaseActivity implements View.OnClickListen
         activity_storeset_phone = (TextView) findViewById(R.id.activity_storeset_phone);
         activity_storeset_QQ = (TextView) findViewById(R.id.activity_storeset_QQ);
         activity_accountset_takeout_layout = (LinearLayout) findViewById(R.id.activity_accountset_takeout_layout);
-        activity_accountset_takeout_meituanandbaidu = (LinearLayout) findViewById(R.id.activity_accountset_takeout_meituanandbaidu);
+        activity_accountset_takeout_1 = (LinearLayout) findViewById(R.id.activity_accountset_takeout_1);
+        activity_accountset_takeout_2 = (LinearLayout) findViewById(R.id.activity_accountset_takeout_2);
+
         findViewById(R.id.view_publictitle_back).setOnClickListener(this);
         activity_storeset_logo.setOnClickListener(this);
         findViewById(R.id.activity_storeset_storename_layout).setOnClickListener(this);
@@ -180,9 +182,6 @@ public class StoreSetActivity extends BaseActivity implements View.OnClickListen
                 GetDialog.getCheckBoxDialog(activity, view, new GetDialog.GeCheckBoxDialogInterface() {
                     @Override
                     public void getCheckBox(boolean[] booleens) {
-                        if (booleens[0] && booleens[1]) {
-                            activity_accountset_takeout_meituanandbaidu.setVisibility(View.GONE);
-                        }
                         for (int i = 0; i < 4; i++) {
                             checkBoxs[i].setChecked(booleens[i]);
                             if (booleens[i]) {
@@ -191,8 +190,11 @@ public class StoreSetActivity extends BaseActivity implements View.OnClickListen
                                 checkBoxs[i].setVisibility(View.GONE);
                             }
                         }
-
-
+                        if(!booleens[0]&&!booleens[1]){
+                            activity_accountset_takeout_1.setVisibility(View.GONE);
+                        }else {
+                            activity_accountset_takeout_1.setVisibility(View.VISIBLE);
+                        }
                     }
                 });
 

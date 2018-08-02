@@ -146,7 +146,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="关于我们"
+            android:text="关于厚溥"
             android:textColor="#666666"
             android:textSize="15dp" />
 

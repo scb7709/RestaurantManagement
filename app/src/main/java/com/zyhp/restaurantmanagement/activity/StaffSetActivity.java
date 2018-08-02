@@ -76,6 +76,7 @@ public class StaffSetActivity extends BaseActivity implements View.OnClickListen
         view_publictitle_back.setOnClickListener(this);
         view_publictitle_right = (RelativeLayout) findViewById(R.id.view_publictitle_right);
         view_publictitle_right.setOnClickListener(this);
+        view_publictitle_right.setBackgroundResource(R.drawable.staff_add_shape);
         view_publictitle_right.setVisibility(View.VISIBLE);
         view_publictitle_righticon = (Button) findViewById(R.id.view_publictitle_righticon);
         view_publictitle_righticon.setBackgroundResource(R.mipmap.pic_add);
@@ -194,9 +195,13 @@ public class StaffSetActivity extends BaseActivity implements View.OnClickListen
                 finish();
                 break;
             case R.id.view_publictitle_right:
-                activity_staffset_layout.setVisibility(View.GONE);
-
-
+                if(activity_staffset_layout.getVisibility()==View.VISIBLE){
+                    activity_staffset_layout.setVisibility(View.GONE);
+                    view_publictitle_righticon.setBackgroundResource(R.mipmap.icon_close);
+                }else if (activity_staffset_layout.getVisibility()==View.GONE) {
+                    activity_staffset_layout.setVisibility(View.VISIBLE);
+                    view_publictitle_righticon.setBackgroundResource(R.mipmap.pic_add);
+                }
                 break;
 
             case R.id.activity_staffset_addstaff_birthday:
@@ -271,6 +276,7 @@ public class StaffSetActivity extends BaseActivity implements View.OnClickListen
                 activity_staffset_listview.setAdapter(staffAdapter);
 
                 activity_staffset_layout.setVisibility(View.VISIBLE);
+                view_publictitle_righticon.setBackgroundResource(R.mipmap.pic_add);
                 break;
         }
     }

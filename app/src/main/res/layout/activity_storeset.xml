@@ -233,83 +233,80 @@
     <LinearLayout
         android:id="@+id/activity_accountset_takeout_layout"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:orientation="vertical"
+        android:layout_height="100dp"
         android:layout_marginTop="2dp"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/activity_accountset_takeout_meituanandbaidu"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
 
             <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginLeft="15dp"
+                android:gravity="center"
                 android:text="外卖平台:"
                 android:textColor="@color/blacklow"
                 android:textSize="14dp" />
 
-            <CheckBox
-                android:id="@+id/activity_accountset_takeout_meituan"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:checked="true"
-                android:clickable="false"
-                android:text="美团外卖" />
-            <CheckBox
-                android:id="@+id/activity_accountset_takeout_baidu"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:checked="true"
-                android:clickable="false"
-                android:text="百度外卖" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/white"
-            android:orientation="horizontal">
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="15dp"
-                android:text="外卖平台:"
-                android:visibility="invisible"
-                android:textColor="@color/blacklow"
-                android:textSize="14dp" />
+                <LinearLayout
+                    android:id="@+id/activity_accountset_takeout_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
 
+                    <CheckBox
+                        android:id="@+id/activity_accountset_takeout_meituan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="美团外卖" />
 
-            <CheckBox
-                android:id="@+id/activity_accountset_takeout_koubei"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:checked="false"
-                android:clickable="false"
+                    <CheckBox
+                        android:id="@+id/activity_accountset_takeout_baidu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:checked="true"
+                        android:clickable="false"
+                        android:text="百度外卖" />
 
-                android:text="口碑外卖"
-                android:visibility="gone" />
+                </LinearLayout>
 
-            <CheckBox
-                android:id="@+id/activity_accountset_takeout_elema"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:checked="false"
-                android:clickable="false"
-                android:text="饿了吗外卖"
+                <LinearLayout
+                    android:id="@+id/activity_accountset_takeout_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
 
-                android:visibility="gone" />
-        </LinearLayout>
+                    <CheckBox
+                        android:id="@+id/activity_accountset_takeout_koubei"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:checked="false"
+                        android:clickable="false"
+                        android:text="口碑外卖"
+                        android:visibility="gone" />
+
+                    <CheckBox
+                        android:id="@+id/activity_accountset_takeout_elema"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:checked="false"
+                        android:clickable="false"
+                        android:text="饿了吗外卖"
+                        android:visibility="gone" />
+
+                </LinearLayout>
+            </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
