@@ -14,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:background="@mipmap/accontset_blackground">
+        android:background="@mipmap/icon_storeset">
 
 
         <com.zyhp.restaurantmanagement.myview.CircleImageView

@@ -7,7 +7,7 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Rect;
-
+import android.util.TypedValue;
 
 
 /**
@@ -104,5 +104,13 @@ public class ImageUtil {
         canvas.drawText(text, paddingLeft, paddingTop, paint);
         return bitmap;
     }
+    public static int sp2px(Context context, float spVal)
 
+    {
+
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP,
+
+                spVal, context.getResources().getDisplayMetrics());
+
+    }
 }

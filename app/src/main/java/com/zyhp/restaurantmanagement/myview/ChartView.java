@@ -13,7 +13,6 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Build;
-import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -23,6 +22,7 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 
 import com.zyhp.restaurantmanagement.R;
+import com.zyhp.restaurantmanagement.utils.ImageUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,7 @@ import java.util.Map;
 
 /**
  * 自定义折线图
- * Created by scb on 18/7/15.
+ * Created by xiaoyunfei on 16/11/29.
  */
 public class ChartView extends View {
     //xy坐标轴颜色
@@ -96,31 +96,6 @@ public class ChartView extends View {
     }
 
     /**
-     * 初始化畫筆
-     */
-    private void initPaint() {
-        xyPaint = new Paint();
-        xyPaint.setAntiAlias(true);
-        xyPaint.setStrokeWidth(xylinewidth);
-        xyPaint.setStrokeCap(Paint.Cap.ROUND);
-        xyPaint.setColor(xylinecolor);
-
-        xyTextPaint = new Paint();
-        xyTextPaint.setAntiAlias(true);
-        xyTextPaint.setTextSize(xytextsize);
-        xyTextPaint.setStrokeCap(Paint.Cap.ROUND);
-        xyTextPaint.setColor(xytextcolor);
-        xyTextPaint.setStyle(Paint.Style.STROKE);
-
-        linePaint = new Paint();
-        linePaint.setAntiAlias(true);
-        linePaint.setStrokeWidth(xylinewidth);
-        linePaint.setStrokeCap(Paint.Cap.ROUND);
-        linePaint.setColor(linecolor);
-        linePaint.setStyle(Paint.Style.STROKE);
-    }
-
-    /**
      * 初始化
      *
      * @param context
@@ -128,7 +103,15 @@ public class ChartView extends View {
      * @param defStyleAttr
      */
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
-        TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.chartView, defStyleAttr, 0);
+        xylinecolor = Color.parseColor("#e2e2e2");
+        xylinewidth =ImageUtil.dp2px(context,1);
+        xytextcolor = Color.parseColor("#7e7e7e");
+        xytextsize = ImageUtil.sp2px(context,12);
+        linecolor = Color.parseColor("#02bbb7");
+        interval = ImageUtil.dp2px(context,50);
+        bgcolor =Color.parseColor("#ffffff");
+        isScroll = false;
+      /*  TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.chartView, defStyleAttr, 0);
         int count = array.getIndexCount();
         for (int i = 0; i < count; i++) {
             int attr = array.getIndex(i);
@@ -159,8 +142,36 @@ public class ChartView extends View {
                     break;
             }
         }
-        array.recycle();
+         array.recycle();
 
+        */
+
+
+    }
+
+    /**
+     * 初始化畫筆
+     */
+    private void initPaint() {
+        xyPaint = new Paint();
+        xyPaint.setAntiAlias(true);
+        xyPaint.setStrokeWidth(xylinewidth);
+        xyPaint.setStrokeCap(Paint.Cap.ROUND);
+        xyPaint.setColor(xylinecolor);
+
+        xyTextPaint = new Paint();
+        xyTextPaint.setAntiAlias(true);
+        xyTextPaint.setTextSize(xytextsize);
+        xyTextPaint.setStrokeCap(Paint.Cap.ROUND);
+        xyTextPaint.setColor(xytextcolor);
+        xyTextPaint.setStyle(Paint.Style.STROKE);
+
+        linePaint = new Paint();
+        linePaint.setAntiAlias(true);
+        linePaint.setStrokeWidth(xylinewidth);
+        linePaint.setStrokeCap(Paint.Cap.ROUND);
+        linePaint.setColor(linecolor);
+        linePaint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
@@ -372,7 +383,6 @@ public class ChartView extends View {
                 if (i == selectIndex - 1) {
                     xyTextPaint.setColor(linecolor);
                     canvas.drawText(text, 0, text.length(), x - rect.width() / 2, yOri + xylinewidth + dpToPx(2) + rect.height(), xyTextPaint);
-
                     canvas.drawRoundRect(x - xValueRect.width() / 2 - dpToPx(3), yOri + xylinewidth + dpToPx(1), x + xValueRect.width() / 2 + dpToPx(3), yOri + xylinewidth + dpToPx(2) + xValueRect.height() + dpToPx(2), dpToPx(2), dpToPx(2), xyTextPaint);
                 } else {
                     canvas.drawText(text, 0, text.length(), x - rect.width() / 2, yOri + xylinewidth + dpToPx(2) + rect.height(), xyTextPaint);
@@ -383,78 +393,12 @@ public class ChartView extends View {
 
     private float startX;
 
-    private float downX ;    //按下时 的X坐标
-    private float downY ;    //按下时 的Y坐标
-
-
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (isScrolling)
             return super.onTouchEvent(event);
-
         this.getParent().requestDisallowInterceptTouchEvent(true);//当该view获得点击事件，就请求父控件不拦截事件
         obtainVelocityTracker(event);
-        Boolean x1 = getaBoolean(event);
-        if (x1 != null) return x1;
-
-        return  true;
-        /*String action = "";
-        //在触发时回去到起始坐标
-        float x= event.getX();
-        float y = event.getY();
-
-        switch (event.getAction()){
-            case MotionEvent.ACTION_DOWN:
-                //将按下时的坐标存储
-                downX = x;
-                downY = y;
-                break;
-            case MotionEvent.ACTION_UP:
-                //获取到距离差
-                float dx= x-downX;
-                float dy = y-downY;
-                //防止是按下也判断
-                if (Math.abs(dx)>8&&Math.abs(dy)>8) {
-                    //通过距离差判断方向
-                    int orientation = getOrientation(dx, dy);
-                    switch (orientation) {
-                        case 'r':
-                            action = "右";
-                        case 'l':
-                            action = "左";
-
-
-
-                            Boolean x1 = getaBoolean(event);
-                            if (x1 != null) return x1;
-
-
-                            break;
-                        case 't':
-                            action = "上";
-                        case 'b':
-                            action = "下";
-
-
-
-                            break;
-                    }
-
-                }
-                break;
-        }
-
-
-
-        return true;*/
-    }
-
-    @Nullable
-    private Boolean getaBoolean(MotionEvent event) {
-
-
-
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 startX = event.getX();
@@ -484,21 +428,8 @@ public class ChartView extends View {
                 recycleVelocityTracker();
                 break;
         }
-        return null;
+        return true;
     }
-
-
-    private int getOrientation(float dx, float dy) {
-
-        if (Math.abs(dx)>Math.abs(dy)){
-            //X轴移动
-            return dx>0?'r':'l';
-        }else{
-            //Y轴移动
-            return dy>0?'b':'t';
-        }
-    }
-
 
     //是否正在滑动
     private boolean isScrolling = false;

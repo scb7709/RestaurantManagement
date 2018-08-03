@@ -199,18 +199,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-
-
                 android:text="日营收(本月)"
                 android:textColor="#7e7e7e"
                 android:textSize="8dp" />
 
-            <com.zyhp.restaurantmanagement.myview.ChartView
+            <RelativeLayout
+                android:id="@+id/fragment_income_chartview_relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            </RelativeLayout>
+
+            <!--<com.zyhp.restaurantmanagement.myview.ChartView
 
                 android:id="@+id/fragment_income_chartview_day"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_centerInParent="true"
                 android:layout_weight="1"
                 app:bgcolor="#ffffff"
                 app:interval="50dp"
@@ -219,35 +223,7 @@
                 app:xylinecolor="#e2e2e2"
                 app:xylinewidth="1dp"
                 app:xytextcolor="#7e7e7e"
-                app:xytextsize="12sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:text="月营收(本年)"
-                android:textColor="#7e7e7e"
-                android:textSize="8dp"
-                android:visibility="gone" />
-
-            <com.zyhp.restaurantmanagement.myview.ChartView
-                android:id="@+id/fragment_income_chartview_month"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_centerInParent="true"
-                android:layout_marginBottom="10dp"
-                android:layout_weight="1"
-                android:visibility="gone"
-
-                app:bgcolor="#ffffff"
-                app:interval="50dp"
-                app:isScroll="false"
-                app:linecolor="#02bbb7"
-                app:xylinecolor="#e2e2e2"
-                app:xylinewidth="1dp"
-                app:xytextcolor="#7e7e7e"
-                app:xytextsize="12sp" />
+                app:xytextsize="12sp" />-->
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

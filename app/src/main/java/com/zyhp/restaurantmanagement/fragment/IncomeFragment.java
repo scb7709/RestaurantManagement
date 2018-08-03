@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.CalendarView;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.zyhp.restaurantmanagement.R;
@@ -48,8 +49,9 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
     TextView fragment_income_turnovers, fragment_income_foodcount, fragment_income_ordercount, fragment_income_date;
     LinearLayout fragment_income_orderlayout;
     DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
-    private ChartView fragment_income_chartview_day, fragment_income_chartview_month;
+    private ChartView fragment_income_chartview_day;
 
+    RelativeLayout fragment_income_chartview_relativeLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -73,17 +75,11 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         fragment_income_date.setOnClickListener(this);
         fragment_income_orderlayout = (LinearLayout) view.findViewById(R.id.fragment_income_orderlayout);
         fragment_income_orderlayout.setOnClickListener(this);
-        fragment_income_chartview_day = (ChartView) view.findViewById(R.id.fragment_income_chartview_day);
-        fragment_income_chartview_month = (ChartView) view.findViewById(R.id.fragment_income_chartview_month);
-
+        //fragment_income_chartview_day = (ChartView) view.findViewById(R.id.fragment_income_chartview_day);
+        fragment_income_chartview_relativeLayout= (RelativeLayout) view.findViewById(R.id.fragment_income_chartview_relativeLayout);
         Date date = new Date();
         Income income = new Income(dateFormat.format(date), "59324.2", "520", "1200");
         setIncomeData(income);
-
-
-        // incomeList = new ArrayList<>();
-
-
         makeLine(Calendar.getInstance());
     }
 
@@ -94,13 +90,30 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         fragment_income_ordercount.setText(income.getOrdercount());
 
     }
+    /*
+    *
+    *
+    *    android:id="@+id/fragment_income_chartview_day"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                app:bgcolor="#ffffff"
+                app:interval="50dp"
+                app:isScroll="false"
+                app:linecolor="#02bbb7"
+                app:xylinecolor="#e2e2e2"
+                app:xylinewidth="1dp"
+                app:xytextcolor="#7e7e7e"
+                app:xytextsize="12sp" />-->
+    * */
 
 
     private void makeLine(Calendar cale) {
-
+        fragment_income_chartview_relativeLayout.removeAllViews();
+        ChartView chartView=new ChartView(getActivity());
+      //  chartView.set
+       // fragment_income_chartview_day.invalidate();
         int day = cale.get(Calendar.DATE);
-
-
         //x轴坐标对应的数据
         List<String> xValue_day = new ArrayList<>();
         //y轴坐标对应的数据
@@ -114,23 +127,12 @@ public class IncomeFragment extends Fragment implements View.OnClickListener {
         for (int i = 1; i <= 10; i++) {
             yValue_day.add(i * 1000);
         }
-        fragment_income_chartview_day.setValue(value_day, xValue_day, yValue_day);
+        chartView.setValue(value_day, xValue_day, yValue_day);
 
 
-       /* //x轴坐标对应的数据
-         List<String> xValue_month = new ArrayList<>();
-        //y轴坐标对应的数据
-         List<Integer> yValue_month = new ArrayList<>();
-        //折线对应的数据
-         Map<String, Integer> value_month = new HashMap<>();
-        for (int i = 1; i<= month; i++) {
-            xValue_month.add(i+ "月");
-            value_month.put(i + "月", new Random().nextInt(90000)+10000);//60--240
-        }
-        for (int i = 1; i <=5; i++) {
-            yValue_month.add(i * 20000);
-        }
-        fragment_income_chartview_month.setValue(value_month, xValue_month, yValue_month);*/
+        fragment_income_chartview_relativeLayout.addView(chartView);
+        RelativeLayout.LayoutParams layoutParams=(RelativeLayout.LayoutParams)chartView.getLayoutParams();
+        chartView.setLayoutParams(layoutParams);
     }
 
 
