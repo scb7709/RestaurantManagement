@@ -274,26 +274,7 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                 current_classify_possition = i;
 
                 if (i < classifylist.size()) {
-                    tempfoodmateriallist.clear();
-                    foodmaterialClassifyAdapter.changeSelected(i);//刷新
-                    FoodmaterialClassify foodClassify = classifylist.get(i);
-                    activity_foodmaterial_classifyname.setText(foodClassify.getFoodclassify_name());
-                    for (Object object : foodmaterialList) {
-                        Foodmaterial foodmaterial = (Foodmaterial) object;
-                        if (foodmaterial.getFoodmaterialclasdify_id() == foodClassify.getFoodclassify_id()) {
-                            tempfoodmateriallist.add(foodmaterial);
-                        }
-                    }
-                    if (tempfoodmateriallist.size() > 0) {
-                        activity_foodmaterial_foodmaterial.setVisibility(View.VISIBLE);
-                        activity_foodmaterial_nothing.setVisibility(View.GONE);
-                        foodmaterialAdapter = new FoodmaterialAdapter(tempfoodmateriallist, layoutInflater);
-                        activity_foodmaterial_foodmaterial.setAdapter(foodmaterialAdapter);
-                    } else {
-                        activity_foodmaterial_foodmaterial.setVisibility(View.GONE);
-                        activity_foodmaterial_nothing.setVisibility(View.VISIBLE);
-
-                    }
+                    choiceClassify_i(i);
 
                 } else {
                     addPop(view, false);
@@ -311,8 +292,17 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
                    GetDialog.IsOperation(activity, "删除" + classifylist.get(i).getFoodclassify_name() + "分类", "是否删除", new GetDialog.IsOperationInterface() {
                        @Override
                        public void isOperation() {
+                          int size=classifylist.size();
+
                            classifylist.remove(i);
+                           spinnerlist.remove(i);
                            activity_foodmaterial_classify.setAdapter(foodmaterialClassifyAdapter);
+                           if(i==size-1){
+                               choiceClassify_i(size-2);//默认选择被删除项的下一项
+                           }else {
+                               choiceClassify_i(i);
+                           }
+
                        }
                    });
                    return  true;
@@ -350,6 +340,30 @@ public class FoodmatearialSetActivity extends BaseActivity implements View.OnCli
             }
         });
     }
+
+    private void choiceClassify_i(int i) {
+        tempfoodmateriallist.clear();
+        foodmaterialClassifyAdapter.changeSelected(i);//刷新
+        FoodmaterialClassify foodClassify = classifylist.get(i);
+        activity_foodmaterial_classifyname.setText(foodClassify.getFoodclassify_name());
+        for (Object object : foodmaterialList) {
+            Foodmaterial foodmaterial = (Foodmaterial) object;
+            if (foodmaterial.getFoodmaterialclasdify_id() == foodClassify.getFoodclassify_id()) {
+                tempfoodmateriallist.add(foodmaterial);
+            }
+        }
+        if (tempfoodmateriallist.size() > 0) {
+            activity_foodmaterial_foodmaterial.setVisibility(View.VISIBLE);
+            activity_foodmaterial_nothing.setVisibility(View.GONE);
+            foodmaterialAdapter = new FoodmaterialAdapter(tempfoodmateriallist, layoutInflater);
+            activity_foodmaterial_foodmaterial.setAdapter(foodmaterialAdapter);
+        } else {
+            activity_foodmaterial_foodmaterial.setVisibility(View.GONE);
+            activity_foodmaterial_nothing.setVisibility(View.VISIBLE);
+
+        }
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

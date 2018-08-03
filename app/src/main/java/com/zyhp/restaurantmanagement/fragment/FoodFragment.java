@@ -133,26 +133,7 @@ public class FoodFragment extends Fragment {
                 current_classify_possition = i;
 
                 if (i < classifylist.size()) {
-                    tempfoodlist.clear();
-                    classifyAdapter.changeSelected(i);//刷新
-                    FoodClassify foodClassify = classifylist.get(i);
-                    fragment_food_classifyname.setText(foodClassify.getFoodclassify_name());
-                    for (Object object : foodList) {
-                        Food food = (Food) object;
-                        if (food.getFood_classifyId() == foodClassify.getFoodclassify_id()) {
-                            tempfoodlist.add(food);
-                        }
-                    }
-                    if (tempfoodlist.size() > 0) {
-                        fragment_food_food.setVisibility(View.VISIBLE);
-                        fragment_food_nothing.setVisibility(View.GONE);
-                        foodAdapter = new FoodAdapter(tempfoodlist, layoutInflater);
-                        fragment_food_food.setAdapter(foodAdapter);
-                    } else {
-                        fragment_food_food.setVisibility(View.GONE);
-                        fragment_food_nothing.setVisibility(View.VISIBLE);
-
-                    }
+                    choiceClassify_i(i);
 
                 } else {
                     addPop(view, false);
@@ -168,8 +149,15 @@ public class FoodFragment extends Fragment {
                     GetDialog.IsOperation(getActivity(), "删除" + classifylist.get(i).getFoodclassify_name() + "分类", "是否删除", new GetDialog.IsOperationInterface() {
                         @Override
                         public void isOperation() {
+                          int size=classifylist.size();
                             classifylist.remove(i);
+                            spinnerlist.remove(i);
                             fragment_food_classify.setAdapter(classifyAdapter);
+                            if(i==size-1){
+                                choiceClassify_i(size-2);//默认选择被删除项的下一项
+                            }else {
+                                choiceClassify_i(i);
+                            }
                         }
                     });
                     return true;
@@ -204,6 +192,29 @@ public class FoodFragment extends Fragment {
             }
         });
 
+    }
+
+    private void choiceClassify_i(int i) {
+        tempfoodlist.clear();
+        classifyAdapter.changeSelected(i);//刷新
+        FoodClassify foodClassify = classifylist.get(i);
+        fragment_food_classifyname.setText(foodClassify.getFoodclassify_name());
+        for (Object object : foodList) {
+            Food food = (Food) object;
+            if (food.getFood_classifyId() == foodClassify.getFoodclassify_id()) {
+                tempfoodlist.add(food);
+            }
+        }
+        if (tempfoodlist.size() > 0) {
+            fragment_food_food.setVisibility(View.VISIBLE);
+            fragment_food_nothing.setVisibility(View.GONE);
+            foodAdapter = new FoodAdapter(tempfoodlist, layoutInflater);
+            fragment_food_food.setAdapter(foodAdapter);
+        } else {
+            fragment_food_food.setVisibility(View.GONE);
+            fragment_food_nothing.setVisibility(View.VISIBLE);
+
+        }
     }
 
     private void findView(View view) {
